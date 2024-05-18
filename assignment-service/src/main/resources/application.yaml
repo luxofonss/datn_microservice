@@ -1,0 +1,23 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /assignments
+
+spring:
+  application:
+    name: assignment-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/datn?currentSchema=assignment_schema&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    show-sql: true
+
+app:
+  services:
+    user: http://localhost:8081/users

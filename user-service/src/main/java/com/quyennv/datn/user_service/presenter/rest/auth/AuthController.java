@@ -62,4 +62,13 @@ public class AuthController implements AuthResource{
                 o -> GetAuthProfileUseCaseOutputMapper.map(o.getUser())
         );
     }
+
+    @Override
+    public CompletableFuture<ResponseEntity<ApiResponse>> introspect(UserPrincipal requester) {
+        return useCaseExecutor.execute(
+                getAuthProfileUseCase,
+                GetAuthProfileUseCaseInputMapper.map(requester),
+                o -> GetAuthProfileUseCaseOutputMapper.map(o.getUser())
+        );
+    }
 }

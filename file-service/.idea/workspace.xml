@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7fdd21bb-3515-42d5-b5f3-701fa5d1bfce" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/quyennv/datn/apigateway/configuration/WebClientConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/quyennv/datn/apigateway/dto/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/quyennv/datn/apigateway/dto/IntrospectResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/quyennv/datn/apigateway/repository/IdentityClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/quyennv/datn/apigateway/services/IdentityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/src/main/java/com/quyennv/datn/assignment_service/AssignmentServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment-service/src/test/java/com/quyennv/datn/assignment_service/AssignmentServiceApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/CourseData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/CourseInfoData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/CourseStudentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/CourseStudentDataKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/LearnerInfoData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/LessonData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/LessonStudentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/LessonStudentDataKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/SectionData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/entities/SubjectData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/CourseRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/CourseStudentRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/CriteriaCourseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/JpaCourseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/JpaCourseStudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/JpaLessonStudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/JpaSectionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/db/postgres/repositories/LessonStudentRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/adapter/services/user_services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/Course.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/CourseInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/CourseStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/CourseTeacher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/LearnerInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/Lesson.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/LessonStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/Section.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/Subject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/AttemptType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/CourseInfoType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/CourseLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/CourseStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/DocumentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/EnrollStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/LearnerType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/LessonStudentStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/enums/LessonType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/valueobject/Assignment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/valueobject/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/valueobject/Conversation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/valueobject/Resource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/valueobject/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/repositories/CourseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/repositories/CourseStudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/repositories/CourseUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/repositories/LessonStudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/CourseUpdateUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/CreateCourseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/DeleteCourseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/GetAllCourseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/GetCoursesUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/GetCreatedCoursesUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/GetEnrolledCoursesUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/GetOneCourseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/coure/UpdateCourseDetailUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/CourseStudentsGetAllUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/DeleteCourseStudentUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/RegisterForCourseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/StudentGetRegisteredCoursesUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/StudentJoinCourseByCodeUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/StudentRegisterForCourseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/TeacherAddStudentsToCourseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/UpdateCourseStudentStatusUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/course_student/UpdateCourseStudentUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/lesson/CreateLessonStudyStatusUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/lesson/CreateLessonsUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/lesson/DeleteLessonsUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/lesson/UpdateLessonStudyStatusUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/lesson/UpdateLessonsUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/section/CreateSectionsUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/section/DeleteSectionsUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/usecases/section/UpdateSectionsUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/utils/FileHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/utils/FunctionHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/AuthenticationRequestInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/CurrentUserResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/CustomJwtDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/AddStudentToCourseRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/CreateCourseRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/CreateCourseRequestCourseInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/CreateCourseRequestLesson.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/CreateCourseRequestSection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/CreateStudyStatusRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/GetCoursesRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/StudentRegisterWithCodeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/UpdateCourseRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/UpdateCourseRequestCourseInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/UpdateCourseRequestCourseStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/UpdateCourseRequestLesson.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/UpdateCourseRequestSection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/course/UpdateCourseStudentStatusRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/user/UserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/mapper/course/CourseMutationDetailInputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/mapper/course/CreateCourseUseCaseInputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/mapper/course/GetCourseUseCaseInputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/mapper/course/UpdateCourseUseCaseInputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/mapper/lesson/LessonMutationInputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/mapper/section/SectionMutationInputMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/rest/course/CourseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/rest/course/CourseResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/core/usecases/user/GetUserByConditionUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/core/usecases/user/GetUsersUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/config/CustomJwtDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/dto/user/GetUsersByConditionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/rest/user/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/rest/user/UserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/java/com/quyennv/datn/apigateway/configuratin/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/quyennv/datn/apigateway/configuration/AuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/CourseServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/CourseServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/Identity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/core/domain/entities/Identity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/Module.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/dto/ApiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/UseCaseExecutorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/UseCaseExecutorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/security/CurrentUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/security/CurrentUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/security/JwtAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/security/JwtFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/security/JwtProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/security/UserPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/java/com/quyennv/datn/courseservice/presenter/usecases/security/UserPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../course-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../course-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/adapter/db/postgres/repositories/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/adapter/db/postgres/repositories/UserRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/core/usecases/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/core/usecases/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/config/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/config/Module.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/rest/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/rest/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/rest/auth/AuthResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/rest/auth/AuthResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/AuthenticationUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/AuthenticationUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/UserPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../user-service/src/main/java/com/quyennv/datn/user_service/presenter/usecases/security/UserPrincipal.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://C:/Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2gd1LTyj34YHD2sUrMPlXzAiOmP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7fdd21bb-3515-42d5-b5f3-701fa5d1bfce" name="Changes" comment="" />
+      <created>1716012590181</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716012590181</updated>
+      <workItem from="1716012592164" duration="12000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

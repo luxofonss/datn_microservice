@@ -1,12 +1,15 @@
 package com.quyennv.datn.courseservice.presenter.dto;
 
 import jakarta.annotation.Nullable;
-import lombok.Value;
+import lombok.*;
 
-@Value
-public class ApiResponse {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class ApiResponse<T> {
     Boolean success;
     String message;
     @Nullable
-    Object data;
+    T data;
 }

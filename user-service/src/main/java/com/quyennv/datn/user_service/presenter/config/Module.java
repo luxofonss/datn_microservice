@@ -2,6 +2,7 @@ package com.quyennv.datn.user_service.presenter.config;
 
 import com.quyennv.datn.user_service.core.usecases.user.CreateUserUseCase;
 import com.quyennv.datn.user_service.core.usecases.user.GetAuthProfileUseCase;
+import com.quyennv.datn.user_service.core.usecases.user.GetUserByConditionUseCase;
 import com.quyennv.datn.user_service.core.usecases.user.UserRepository;
 import com.quyennv.datn.user_service.presenter.usecases.security.AppUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -22,5 +23,10 @@ public class Module {
     @Bean
     GetAuthProfileUseCase getAuthProfileUseCase(UserRepository userRepository) {
         return new GetAuthProfileUseCase(userRepository);
+    }
+
+    @Bean
+    GetUserByConditionUseCase getUserByConditionUseCase(UserRepository userRepository) {
+        return new GetUserByConditionUseCase(userRepository);
     }
 }

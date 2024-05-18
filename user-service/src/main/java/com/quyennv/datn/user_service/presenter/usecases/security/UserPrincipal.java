@@ -3,6 +3,7 @@ package com.quyennv.datn.user_service.presenter.usecases.security;
 import com.quyennv.datn.user_service.core.domain.entities.User;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Builder
 @Slf4j
+@ToString
 public class UserPrincipal implements UserDetails {
     private UUID id;
     private String username;

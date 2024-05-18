@@ -22,4 +22,6 @@ public interface AuthResource {
 
     @GetMapping("/who-am-i")
     CompletableFuture<ResponseEntity<ApiResponse>> whoAmI(@CurrentUser UserPrincipal requester);
+    @GetMapping("/introspect")
+    CompletableFuture<ResponseEntity<ApiResponse>> introspect(@CurrentUser UserPrincipal requester);
 }

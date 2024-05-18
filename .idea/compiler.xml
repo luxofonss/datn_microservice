@@ -10,12 +10,14 @@
         <module name="api-gateway" />
         <module name="course-service" />
         <module name="user-service" />
+        <module name="assignment_service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
+      <module name="assignment_service" options="-parameters" />
       <module name="course-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

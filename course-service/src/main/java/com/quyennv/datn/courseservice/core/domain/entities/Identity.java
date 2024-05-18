@@ -24,6 +24,10 @@ public class Identity {
         return new Identity(UUID.fromString(id));
     }
 
+    public UUID getUUID() {
+        return id;
+    }
+
     public String toString() {
         return this.getId().toString();
     }
