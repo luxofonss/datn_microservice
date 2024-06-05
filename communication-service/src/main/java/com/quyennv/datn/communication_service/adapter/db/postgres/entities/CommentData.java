@@ -1,16 +1,15 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.communication_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.entities.Comment;
-import com.quyennv.lms.core.domain.entities.Identity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.quyennv.datn.communication_service.core.domain.entities.Comment;
+import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.domain.valueobject.User;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity(name="comments")
 @Table(name="comments")
@@ -24,38 +23,26 @@ import java.util.Objects;
 public class CommentData extends BaseEntity {
     String content;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    UserData user;
+    @Column(name="user_id")
+    UUID userId;
 
     @ManyToOne
     @JoinColumn(name="conversation_id")
     ConversationData conversation;
 
-    @ManyToOne
-    @JoinColumn(name="lesson_id")
-    LessonData lesson;
-
     public static CommentData from(Comment comment) {
         CommentData result = CommentData
                 .builder()
                 .content(comment.getContent())
+                .userId(comment.getUser().getId().getUUID())
                 .build();
 
         if (Objects.nonNull(comment.getId())) {
             result.setId(comment.getId().getId());
         }
 
-        if (Objects.nonNull(comment.getUser())) {
-            result.setUser(UserData.from(comment.getUser()));
-        }
-
         if (Objects.nonNull(comment.getConversation())) {
             result.setConversation(ConversationData.from(comment.getConversation()));
-        }
-
-        if (Objects.nonNull(comment.getLesson())) {
-            result.setLesson(LessonData.from(comment.getLesson()));
         }
 
         result.setCreatedAt(comment.getCreatedAt());
@@ -70,7 +57,7 @@ public class CommentData extends BaseEntity {
                 .builder()
                 .id(Identity.from(this.getId()))
                 .content(this.getContent())
-                .user(this.getUser().fromThis())
+                .user(User.builder().id(Identity.from(this.getUserId())).build())
                 .createdAt(this.getCreatedAt())
                 .updatedAt(this.getUpdatedAt())
                 .deletedAt(this.getDeletedAt())

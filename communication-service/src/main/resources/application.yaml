@@ -1,1 +1,23 @@
-spring.application.name=communication-service
+server:
+  port: 8085
+  servlet:
+    context-path: /communications
+
+spring:
+  application:
+    name: communications-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/datn?currentSchema=communication_schema&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    show-sql: true
+
+app:
+  services:
+    user: http://localhost:8088/users

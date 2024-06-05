@@ -1,7 +1,7 @@
 package com.quyennv.datn.assignment_service.presenter.config;
 
-import com.quyennv.datn.courseservice.presenter.config.CustomJwtDecoder;
-import com.quyennv.datn.courseservice.presenter.config.JwtAuthenticationEntryPoint;
+import com.quyennv.datn.assignment_service.presenter.config.CustomJwtDecoder;
+import com.quyennv.datn.assignment_service.presenter.config.JwtAuthenticationEntryPoint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

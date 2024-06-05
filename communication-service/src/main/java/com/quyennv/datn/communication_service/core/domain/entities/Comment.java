@@ -1,5 +1,6 @@
-package com.quyennv.lms.core.domain.entities;
+package com.quyennv.datn.communication_service.core.domain.entities;
 
+import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,6 @@ public class Comment {
     String content;
     User user;
     Conversation conversation;
-    Lesson lesson;
 
     LocalDateTime createdAt;
     LocalDateTime updatedAt;

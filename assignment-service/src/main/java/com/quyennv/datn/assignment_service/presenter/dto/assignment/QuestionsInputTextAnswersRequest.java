@@ -1,4 +1,4 @@
-package com.quyennv.lms.presenter.rest.dto.assignment;
+package com.quyennv.datn.assignment_service.presenter.dto.assignment;
 
 import lombok.Value;
 

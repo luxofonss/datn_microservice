@@ -34,6 +34,9 @@ public class Identity {
 
     @JsonValue
     public String getIdAsString() {
+        if (id == null) {
+            return null;
+        }
         return id.toString();
     }
 }

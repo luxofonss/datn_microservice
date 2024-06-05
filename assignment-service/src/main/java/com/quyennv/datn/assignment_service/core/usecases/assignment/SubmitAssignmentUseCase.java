@@ -1,6 +1,8 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment;
 
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentAttemptRepository;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.UpdateAssignmentAttemptUseCase;
 
 import java.time.LocalDateTime;
 

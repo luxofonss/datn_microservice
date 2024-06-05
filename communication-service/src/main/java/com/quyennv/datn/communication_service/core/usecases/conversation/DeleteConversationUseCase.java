@@ -1,6 +1,6 @@
-package com.quyennv.lms.core.usecases.conversation;
+package com.quyennv.datn.communication_service.core.usecases.conversation;
 
-import com.quyennv.lms.core.domain.entities.Conversation;
+import com.quyennv.datn.communication_service.core.domain.entities.Conversation;
 
 public class DeleteConversationUseCase extends UpdateConversationUseCase {
 

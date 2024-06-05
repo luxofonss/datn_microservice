@@ -1,6 +1,7 @@
-package com.quyennv.lms.core.usecases.conversation;
+package com.quyennv.datn.communication_service.core.usecases.conversation;
 
-import com.quyennv.lms.core.domain.entities.*;
+import com.quyennv.datn.communication_service.core.domain.entities.*;
+import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 
 public class UpdateConversationInfoUseCase extends UpdateConversationUseCase {
 
@@ -14,9 +15,8 @@ public class UpdateConversationInfoUseCase extends UpdateConversationUseCase {
                 .id(currentData.getId())
                 .content(input.getContent())
                 .type(input.getType())
-                .lesson(Lesson.builder().id(input.getLessonId()).build())
                 .user(User.builder().id(input.getUserId()).build())
-                .course(Course.builder().id(input.getCourseId()).build())
+                .targetPlacementId(input.getTargetPlacementId())
                 .build();
 
         return currentData.update(updateData);

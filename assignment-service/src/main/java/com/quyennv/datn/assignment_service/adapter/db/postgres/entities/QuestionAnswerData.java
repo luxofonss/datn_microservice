@@ -1,17 +1,14 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.Question;
-import com.quyennv.lms.core.domain.entities.QuestionAnswer;
+import com.quyennv.datn.assignment_service.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Question;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswer;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity(name="question_answer")
@@ -35,9 +32,9 @@ public class QuestionAnswerData extends BaseEntity{
     @ManyToOne
     @JoinColumn(name="question_id")
     private QuestionData question;
-    @ManyToOne
-    @JoinColumn(name="creator_id")
-    private UserData creator;
+    @Column(name="creator_id")
+    private UUID creatorId;
+
     @ManyToMany
     @JoinTable(
             name= "question_answer_question_choices",
@@ -58,7 +55,7 @@ public class QuestionAnswerData extends BaseEntity{
                 .teacherFixedTextAnswer(qa.getTeacherFixedTextAnswer())
                 .score(qa.getScore())
                 .question(Objects.nonNull(qa.getQuestion()) ? QuestionData.from(qa.getQuestion()) : null)
-                .creator(Objects.nonNull(UserData.from(qa.getCreator())) ? UserData.from(qa.getCreator()) : null)
+                .creatorId(Objects.nonNull(qa.getCreatorId()) ? qa.getCreatorId().getUUID() : null)
                 .build();
 
         if (Objects.nonNull(qa.getSelectedOptions())) {
@@ -97,7 +94,7 @@ public class QuestionAnswerData extends BaseEntity{
                 .textAnswer(this.textAnswer)
                 .teacherFixedTextAnswer(this.teacherFixedTextAnswer)
                 .score(this.score)
-                .creator(this.creator.fromThis())
+                .creatorId(Objects.nonNull(this.creatorId) ? Identity.from(this.creatorId) : null)
                 .createdAt(this.getCreatedAt())
                 .updatedAt(this.getUpdatedAt())
                 .deletedAt(this.getDeletedAt())

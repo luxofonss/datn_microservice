@@ -1,10 +1,10 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.repositories;
 
-import com.quyennv.lms.core.domain.entities.*;
-import com.quyennv.lms.core.domain.enums.AssignmentType;
-import com.quyennv.lms.core.domain.enums.QuestionLevel;
-import com.quyennv.lms.core.domain.enums.QuestionType;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.*;
+import com.quyennv.datn.assignment_service.core.domain.enums.AssignmentType;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionLevel;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionType;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -36,7 +36,7 @@ public abstract class UpdateAssignmentUseCase extends UseCase<
 
     public abstract Assignment update(InputValues input, Assignment assignment);
 
-    public List<Question> mapQuestions(List<UpdateAssignmentUseCase.QuestionInput> questions, InputValues input) {
+    public List<Question> mapQuestions(List<QuestionInput> questions, InputValues input) {
         return questions.stream().map(
                 q -> {
                     Question question = Question
@@ -46,11 +46,11 @@ public abstract class UpdateAssignmentUseCase extends UseCase<
                             .title(q.getTitle())
                             .image(q.getImage())
                             .audio(q.getAudio())
-                            .subject(Objects.nonNull(input.getSubjectId()) ? Subject.builder().id(input.getSubjectId()).build() : null)
+                            .subjectId(input.getSubjectId())
                             .mark(q.getMark())
                             .type(q.getType())
                             .answerExplanation(q.getAnswerExplanation())
-                            .creator(User.builder().id(input.getTeacherId()).build())
+                            .creatorId(input.getTeacherId())
                             .build();
 
                     if(Objects.nonNull(q.getChoices())) {
@@ -97,7 +97,7 @@ public abstract class UpdateAssignmentUseCase extends UseCase<
         String description;
         Identity teacherId;
         Identity subjectId;
-        List<UpdateAssignmentUseCase.QuestionInput> questions;
+        List<QuestionInput> questions;
         Long duration;
         LocalDateTime startTime;
         LocalDateTime endTime;
@@ -122,9 +122,9 @@ public abstract class UpdateAssignmentUseCase extends UseCase<
         QuestionLevel level;
         QuestionType type;
         String answerExplanation;
-        List<UpdateAssignmentUseCase.QuestionChoiceInput> choices;
-        List<UpdateAssignmentUseCase.QuestionTextAnswerInput> textAnswers;
-        List<UpdateAssignmentUseCase.QuestionInput> subQuestions;
+        List<QuestionChoiceInput> choices;
+        List<QuestionTextAnswerInput> textAnswers;
+        List<QuestionInput> subQuestions;
     }
 
     @Value

@@ -1,9 +1,8 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.entities.Assignment;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.Lesson;
-import com.quyennv.lms.core.domain.enums.AssignmentType;
+import com.quyennv.datn.assignment_service.core.domain.entities.Assignment;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.enums.AssignmentType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity(name="assignments")
 @Getter
@@ -28,12 +28,12 @@ public class AssignmentData extends BaseEntity{
 
     @OneToMany(mappedBy = "assignment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<QuestionData> questions;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="created_by", nullable = false)
-    private UserData creator;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="subject_id", nullable = false)
-    private SubjectData subject;
+
+    @Column(name="created_by")
+    private UUID createdBy;
+
+    @Column(name="subject_id")
+    private UUID subjectId;
 
     private Long duration;
     @Column(name="start_time")
@@ -44,9 +44,9 @@ public class AssignmentData extends BaseEntity{
     private AssignmentType assignmentType;
     @Column(name="max_attempt_times")
     private Long maxAttemptTimes;
-    @OneToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name="lesson_id", nullable = true)
-    private LessonData lesson;
+
+    @Column(name="lesson_id")
+    private UUID lessonId;
 
     @OneToMany(mappedBy = "assignment", fetch = FetchType.EAGER)
     private List<AssignmentAttemptData> attempts;
@@ -56,14 +56,14 @@ public class AssignmentData extends BaseEntity{
                 .title(assignment.getTitle())
                 .description(assignment.getDescription())
                 .totalMarks(assignment.getTotalMark())
-                .creator(Objects.nonNull(assignment.getCreator()) ? UserData.from(assignment.getCreator()) : null)
-                .subject(Objects.nonNull(assignment.getSubject()) ? SubjectData.from(assignment.getSubject()) : null)
+                .createdBy(Objects.nonNull(assignment.getCreatedBy()) ? assignment.getCreatedBy().getUUID() : null)
+                .subjectId(Objects.nonNull(assignment.getSubjectId()) ? assignment.getSubjectId().getUUID() : null)
                 .duration(assignment.getDuration())
                 .startTime(assignment.getStartTime())
                 .endTime(assignment.getEndTime())
                 .assignmentType(assignment.getAssignmentType())
                 .maxAttemptTimes(assignment.getMaxAttemptTimes())
-                .lesson(Objects.nonNull(assignment.getLesson()) ? LessonData.from(assignment.getLesson()) : null)
+                .lessonId(Objects.nonNull(assignment.getLessonId()) ? assignment.getLessonId().getUUID() : null)
                 .attempts(
                         Objects.nonNull(assignment.getAttempts())
                                 ? assignment.getAttempts().stream().map(AssignmentAttemptData::from).toList()
@@ -100,41 +100,19 @@ public class AssignmentData extends BaseEntity{
                 .title(title)
                 .description(description)
                 .totalMark(totalMarks)
-                .creator(Objects.nonNull(creator) ? creator.fromThis() : null)
-                .subject(Objects.nonNull(subject) ? subject.fromThis() : null)
+                .createdBy(Objects.nonNull(createdBy) ? Identity.from(createdBy) : null)
+                .subjectId(Objects.nonNull(subjectId) ? Identity.from(subjectId) : null)
                 .questions(Objects.nonNull(questions)
                         ? questions.stream().map(QuestionData::fromThis).toList()
                         : null)
                 .duration(duration)
                 .startTime(startTime)
                 .endTime(endTime)
-//                .lesson(Objects.nonNull(lesson) ? lesson.fromThis() : null)
+                .lessonId(Objects.nonNull(lessonId) ? Identity.from(lessonId) : null)
                 .assignmentType(assignmentType)
                 .maxAttemptTimes(maxAttemptTimes)
                 .attempts(Objects.nonNull(attempts)
                         ? attempts.stream().map(AssignmentAttemptData::fromResult).toList()
-                        : null)
-                .createdAt(getCreatedAt())
-                .updatedAt(getUpdatedAt())
-                .deletedAt(getDeletedAt())
-                .build();
-    }
-
-    public Assignment info() {
-        return Assignment
-                .builder()
-                .id(Objects.nonNull(this.getId()) ? Identity.from(this.getId()) : null)
-                .title(title)
-                .description(description)
-                .totalMark(totalMarks)
-                .duration(duration)
-                .startTime(startTime)
-                .endTime(endTime)
-//                .lesson(Objects.nonNull(lesson) ? lesson.fromThis() : null)
-                .assignmentType(assignmentType)
-                .maxAttemptTimes(maxAttemptTimes)
-                .attempts(Objects.nonNull(attempts)
-                        ? attempts.stream().map(AssignmentAttemptData::fromThis).toList()
                         : null)
                 .createdAt(getCreatedAt())
                 .updatedAt(getUpdatedAt())

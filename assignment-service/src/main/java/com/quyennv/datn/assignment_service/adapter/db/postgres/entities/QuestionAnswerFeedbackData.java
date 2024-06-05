@@ -1,10 +1,12 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.QuestionAnswerFeedback;
-import com.quyennv.lms.core.domain.enums.QuestionAnswerFeedbackType;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswerFeedback;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionAnswerFeedbackType;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.UUID;
 
 @Entity(name="question_answer_feedbacks")
 @Getter
@@ -17,9 +19,8 @@ public class QuestionAnswerFeedbackData extends BaseEntity{
     private String message;
     @Enumerated(EnumType.STRING)
     private QuestionAnswerFeedbackType type;
-    @ManyToOne
-    @JoinColumn(name="creator_id")
-    private UserData creator;
+    @Column(name="creator_id")
+    private UUID creatorId;
 
     @ManyToOne
     @JoinColumn(name="question_id")
@@ -30,7 +31,7 @@ public class QuestionAnswerFeedbackData extends BaseEntity{
                 .builder()
                 .message(f.getMessage())
                 .type(f.getType())
-                .creator(UserData.from(f.getCreator()))
+                .creatorId(f.getCreatorId().getUUID())
                 .answer(f.getAnswer() != null ? QuestionAnswerData.from(f.getAnswer().getId()) : null)
                 .build();
 
@@ -46,7 +47,7 @@ public class QuestionAnswerFeedbackData extends BaseEntity{
         return QuestionAnswerFeedback
                 .builder()
                 .id(Identity.from(this.getId()))
-                .creator(this.getCreator().fromThis())
+                .creatorId(Identity.from(this.creatorId))
                 .message(this.message)
                 .type(this.type)
 //                .answer(this.answer.fromThis())

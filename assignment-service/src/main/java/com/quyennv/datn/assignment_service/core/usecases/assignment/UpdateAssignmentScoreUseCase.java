@@ -1,11 +1,13 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment;
 
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.QuestionAnswer;
-import com.quyennv.lms.core.domain.entities.QuestionChoice;
-import com.quyennv.lms.core.domain.enums.QuestionType;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswer;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionChoice;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionType;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentAttemptRepository;
+import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerRepository;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
 

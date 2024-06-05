@@ -1,8 +1,9 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment;
 
-import com.quyennv.lms.core.domain.entities.Assignment;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.Assignment;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentRepository;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
 
@@ -31,7 +32,7 @@ public abstract class GetAssignmentsUseCase extends UseCase<
         Identity teacherId;
         Identity subjectId;
         Identity courseId;
-        Identity sectionId;
+        Identity lessonId;
         Identity studentId;
     }
 

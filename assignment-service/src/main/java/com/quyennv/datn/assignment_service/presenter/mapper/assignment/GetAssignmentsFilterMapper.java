@@ -1,9 +1,9 @@
-package com.quyennv.lms.presenter.rest.mapper.assignment;
+package com.quyennv.datn.assignment_service.presenter.mapper.assignment;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.assignment.GetAssignmentsUseCase;
-import com.quyennv.lms.presenter.rest.dto.assignment.GetAssignmentFilters;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.usecases.assignment.GetAssignmentsUseCase;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.GetAssignmentFilters;
+import com.quyennv.datn.assignment_service.presenter.usecases.security.UserPrincipal;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
@@ -15,7 +15,7 @@ public class GetAssignmentsFilterMapper {
                 .title(filters.getTitle())
                 .subjectId(Objects.nonNull(filters.getSubjectId()) ? Identity.fromString(filters.getSubjectId()) : null)
                 .courseId(Objects.nonNull(filters.getCourseId()) ? Identity.fromString(filters.getCourseId()) : null)
-                .sectionId(Objects.nonNull(filters.getSectionId()) ? Identity.fromString(filters.getSectionId()) : null)
+                .lessonId(Objects.nonNull(filters.getLessonId()) ? Identity.fromString(filters.getLessonId()) : null)
                 .build();
     }
 }

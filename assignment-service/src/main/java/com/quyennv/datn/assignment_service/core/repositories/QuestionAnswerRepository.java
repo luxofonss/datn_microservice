@@ -1,6 +1,6 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.repositories;
 
-import com.quyennv.lms.core.domain.entities.QuestionAnswer;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswer;
 
 import java.util.Optional;
 import java.util.UUID;

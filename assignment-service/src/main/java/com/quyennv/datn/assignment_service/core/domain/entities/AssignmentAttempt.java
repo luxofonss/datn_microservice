@@ -1,4 +1,4 @@
-package com.quyennv.lms.core.domain.entities;
+package com.quyennv.datn.assignment_service.core.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +15,7 @@ import java.util.Objects;
 @Builder
 public class AssignmentAttempt {
     private Identity id;
-    private User student;
+    private Identity studentId;
     private Assignment assignment;
     private List<QuestionAnswer> answers;
     private LocalDateTime startTime;
@@ -39,11 +38,5 @@ public class AssignmentAttempt {
     public AssignmentAttempt submit() {
         this.submittedAt = LocalDateTime.now();
         return this;
-    }
-
-    public Identity getStudentId() {
-        if (student != null)
-            return student.getId();
-        return null;
     }
 }

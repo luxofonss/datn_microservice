@@ -1,9 +1,9 @@
-package com.quyennv.lms.adapter.jpa.repositories;
+package com.quyennv.datn.communication_service.adapter.db.postgres.repositories;
 
-import com.quyennv.lms.adapter.jpa.entities.ConversationData;
-import com.quyennv.lms.core.domain.entities.Conversation;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.conversation.ConversationRepository;
+import com.quyennv.datn.communication_service.adapter.db.postgres.entities.ConversationData;
+import com.quyennv.datn.communication_service.core.domain.entities.Conversation;
+import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.usecases.conversation.ConversationRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,17 +1,17 @@
-package com.quyennv.lms.presenter.rest.api.comment;
+package com.quyennv.datn.communication_service.presenter.rest.comment;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.UseCaseExecutor;
-import com.quyennv.lms.core.usecases.comment.CreateCommentUseCase;
-import com.quyennv.lms.core.usecases.comment.DeleteCommentUseCase;
-import com.quyennv.lms.core.usecases.comment.UpdateCommentInfoUseCase;
-import com.quyennv.lms.core.usecases.comment.UpdateCommentUseCase;
-import com.quyennv.lms.presenter.rest.dto.ApiResponse;
-import com.quyennv.lms.presenter.rest.dto.CreateCommentRequest;
-import com.quyennv.lms.presenter.rest.dto.UpdateCommentRequest;
-import com.quyennv.lms.presenter.rest.mapper.comment.CreateCommentUseCaseInputMapper;
-import com.quyennv.lms.presenter.rest.mapper.comment.UpdateCommentInputMapper;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.usecases.UseCaseExecutor;
+import com.quyennv.datn.communication_service.core.usecases.comment.CreateCommentUseCase;
+import com.quyennv.datn.communication_service.core.usecases.comment.DeleteCommentUseCase;
+import com.quyennv.datn.communication_service.core.usecases.comment.UpdateCommentInfoUseCase;
+import com.quyennv.datn.communication_service.core.usecases.comment.UpdateCommentUseCase;
+import com.quyennv.datn.communication_service.presenter.dto.ApiResponse;
+import com.quyennv.datn.communication_service.presenter.dto.comment.CreateCommentRequest;
+import com.quyennv.datn.communication_service.presenter.dto.comment.UpdateCommentRequest;
+import com.quyennv.datn.communication_service.presenter.mapper.comment.CreateCommentUseCaseInputMapper;
+import com.quyennv.datn.communication_service.presenter.mapper.comment.UpdateCommentInputMapper;
+import com.quyennv.datn.communication_service.presenter.usecases.security.UserPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 

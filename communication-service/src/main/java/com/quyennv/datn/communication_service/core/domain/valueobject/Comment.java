@@ -1,7 +1,7 @@
 package com.quyennv.datn.communication_service.core.domain.valueobject;
 
-import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
-import com.quyennv.datn.assignment_service.core.domain.valueobject.Conversation;
+import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.domain.valueobject.Conversation;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;

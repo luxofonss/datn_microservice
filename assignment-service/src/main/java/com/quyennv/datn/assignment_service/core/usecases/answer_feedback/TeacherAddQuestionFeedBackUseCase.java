@@ -1,11 +1,12 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.answer_feedback;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.QuestionAnswer;
-import com.quyennv.lms.core.domain.entities.QuestionAnswerFeedback;
-import com.quyennv.lms.core.domain.entities.User;
-import com.quyennv.lms.core.domain.enums.QuestionAnswerFeedbackType;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswer;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswerFeedback;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionAnswerFeedbackType;
+import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerFeedbackRepository;
+import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerRepository;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
 
@@ -21,7 +22,7 @@ public class TeacherAddQuestionFeedBackUseCase extends UseCase<TeacherAddQuestio
     }
 
     @Override
-    public TeacherAddQuestionFeedBackUseCase.OutputValues execute(TeacherAddQuestionFeedBackUseCase.InputValues input) {
+    public OutputValues execute(InputValues input) {
         QuestionAnswer questionAnswer = questionAnswerRepository.findById(input.getAnswerId().getId())
                 .orElseThrow(() -> new IllegalArgumentException("Question answer not found"));
 
@@ -29,7 +30,7 @@ public class TeacherAddQuestionFeedBackUseCase extends UseCase<TeacherAddQuestio
                 .builder()
                 .id(input.getFeedbackId())
                 .answer(questionAnswer)
-                .creator(User.builder().id(input.getRequesterId()).build())
+                .creatorId(input.getRequesterId())
                 .message(input.getMessage())
                 .type(input.getType())
                 .build();

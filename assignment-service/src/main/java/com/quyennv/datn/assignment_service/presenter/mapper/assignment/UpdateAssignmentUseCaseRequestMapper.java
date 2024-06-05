@@ -1,12 +1,12 @@
-package com.quyennv.lms.presenter.rest.mapper.assignment;
+package com.quyennv.datn.assignment_service.presenter.mapper.assignment;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.enums.QuestionLevel;
-import com.quyennv.lms.core.domain.enums.QuestionType;
-import com.quyennv.lms.core.usecases.assignment.UpdateAssignmentUseCase;
-import com.quyennv.lms.presenter.rest.dto.assignment.AssignmentQuestionsMutationRequest;
-import com.quyennv.lms.presenter.rest.dto.assignment.QuestionsInputChoicesRequest;
-import com.quyennv.lms.presenter.rest.dto.assignment.QuestionsInputTextAnswersRequest;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionLevel;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionType;
+import com.quyennv.datn.assignment_service.core.repositories.UpdateAssignmentUseCase;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.AssignmentQuestionsMutationRequest;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.QuestionsInputChoicesRequest;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.QuestionsInputTextAnswersRequest;
 
 import java.util.ArrayList;
 import java.util.List;

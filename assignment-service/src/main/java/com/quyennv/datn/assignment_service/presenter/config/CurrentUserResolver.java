@@ -1,7 +1,7 @@
 package com.quyennv.datn.assignment_service.presenter.config;
 
-import com.quyennv.datn.courseservice.presenter.usecases.security.CurrentUser;
-import com.quyennv.datn.courseservice.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.assignment_service.presenter.usecases.security.CurrentUser;
+import com.quyennv.datn.assignment_service.presenter.usecases.security.UserPrincipal;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNullApi;
 import org.springframework.security.core.context.SecurityContextHolder;

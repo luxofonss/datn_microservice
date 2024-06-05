@@ -1,11 +1,9 @@
-package com.quyennv.lms.adapter.jpa.repositories;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.repositories;
 
-import com.quyennv.lms.adapter.jpa.entities.AssignmentAttemptData;
-import com.quyennv.lms.core.domain.entities.Assignment;
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.assignment.AssignmentRepository;
-import com.quyennv.lms.adapter.jpa.entities.AssignmentData;
+import com.quyennv.datn.assignment_service.adapter.db.postgres.entities.AssignmentData;
+import com.quyennv.datn.assignment_service.core.domain.entities.Assignment;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +48,7 @@ public class AssignmentRepositoryImpl implements AssignmentRepository {
         return criteriaAssignmentRepository
                 .findAllWithFilter(title, teacherId, subjectId, courseId, studentId)
                 .stream()
-                .map(AssignmentData::info)
+                .map(AssignmentData::fromThis)
                 .toList();
     }
 }

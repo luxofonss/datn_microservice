@@ -1,6 +1,6 @@
 package com.quyennv.datn.assignment_service.core.domain.valueobject;
 
-import com.quyennv.datn.courseservice.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

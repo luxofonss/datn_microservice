@@ -1,14 +1,16 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.question;
 
-import com.quyennv.lms.core.domain.entities.Assignment;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.Question;
-import com.quyennv.lms.core.usecases.question.QuestionRepository;
+import com.quyennv.datn.assignment_service.core.domain.entities.Assignment;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Question;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentRepository;
+import com.quyennv.datn.assignment_service.core.repositories.QuestionRepository;
+import com.quyennv.datn.assignment_service.core.repositories.UpdateAssignmentUseCase;
 
 import java.util.List;
 import java.util.Objects;
 
-public class AddQuestionsToAssignmentUseCase extends UpdateAssignmentUseCase{
+public class AddQuestionsToAssignmentUseCase extends UpdateAssignmentUseCase {
     private final QuestionRepository questionRepository;
     public AddQuestionsToAssignmentUseCase(AssignmentRepository assignmentRepository, QuestionRepository questionRepository) {
         super(assignmentRepository);

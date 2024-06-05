@@ -3,13 +3,11 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
 
 	"file-service/adapter/database"
 	uploadprovider "file-service/adapter/services/file_upload_provider"
 	"file-service/presenter/libs"
 	"file-service/presenter/webserver"
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -50,19 +48,19 @@ func main() {
 	uploadProvider := uploadprovider.NewS3Provider(s3BucketName, s3Region, s3APIKey, s3SecretKey, s3Domain)
 
 	ginRouter := gin.Default()
-
-	ginRouter.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"},
-		AllowMethods:     []string{"POST", "GET", "PUT", "DELETE", "PATCH", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "accept", "origin", "Cache-Control", "X-Requested-With", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods", "Access-Control-Allow-Credentials"},
-		AllowCredentials: true,
-		MaxAge:           12 * time.Hour,
-	}))
+	//
+	//ginRouter.Use(cors.New(cors.Config{
+	//	AllowOrigins:     []string{"http://localhost:3000"},
+	//	AllowMethods:     []string{"POST", "GET", "PUT", "DELETE", "PATCH", "OPTIONS"},
+	//	AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "accept", "origin", "Cache-Control", "X-Requested-With", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods", "Access-Control-Allow-Credentials"},
+	//	AllowCredentials: true,
+	//	MaxAge:           12 * time.Hour,
+	//}))
 
 	appContext := libs.NewAppContext(postgresDb, uploadProvider)
 	//ginRouter.Use()
 	routeGroup := ginRouter.Group("/files")
 	webserver.SetupRoutes(appContext, routeGroup)
 
-	ginRouter.Run(":8083") // listen and serve on 0.0.0.0:8083
+	ginRouter.Run(":8086") // listen and serve on 0.0.0.0:8083
 }

@@ -1,10 +1,10 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment_attempt;
 
-import com.amazonaws.services.kms.model.NotFoundException;
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.Question;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Question;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentAttemptRepository;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Value;
 
 public class GetAssignmentAttemptByIdUseCase extends UseCase<
@@ -20,14 +20,14 @@ public class GetAssignmentAttemptByIdUseCase extends UseCase<
     public OutputValues execute(InputValues input) {
           AssignmentAttempt attempt = assignmentAttemptRepository
                         .findById(input.getId())
-                        .orElseThrow(() -> new NotFoundException("Assignment attempt not found."));
+                        .orElseThrow(() -> new RuntimeException("Assignment attempt not found."));
 
         for (Question question : attempt.getAssignment().getQuestions()) {
             question.setAnswer(
                     attempt.getAnswers().stream()
                             .filter(qa ->
                                     qa.getQuestion().getId().equals(question.getId())
-                                            && qa.getCreator().getId().equals(attempt.getStudentId()))
+                                            && qa.getCreatorId().equals(attempt.getStudentId()))
                             .findFirst().orElse(null)
             );
         }

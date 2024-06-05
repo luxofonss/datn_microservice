@@ -1,17 +1,17 @@
-package com.quyennv.lms.presenter.rest.api.conversation;
+package com.quyennv.datn.communication_service.presenter.rest.conversation;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.UseCaseExecutor;
-import com.quyennv.lms.core.usecases.conversation.CreateConversationUseCase;
-import com.quyennv.lms.core.usecases.conversation.DeleteConversationUseCase;
-import com.quyennv.lms.core.usecases.conversation.UpdateConversationInfoUseCase;
-import com.quyennv.lms.core.usecases.conversation.UpdateConversationUseCase;
-import com.quyennv.lms.presenter.rest.dto.ApiResponse;
-import com.quyennv.lms.presenter.rest.dto.CreateConversationRequest;
-import com.quyennv.lms.presenter.rest.dto.UpdateConversationRequest;
-import com.quyennv.lms.presenter.rest.mapper.conversation.CreateConversationUseCaseInputMapper;
-import com.quyennv.lms.presenter.rest.mapper.conversation.UpdateConversationUseCaseInputMapper;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.usecases.UseCaseExecutor;
+import com.quyennv.datn.communication_service.core.usecases.conversation.CreateConversationUseCase;
+import com.quyennv.datn.communication_service.core.usecases.conversation.DeleteConversationUseCase;
+import com.quyennv.datn.communication_service.core.usecases.conversation.UpdateConversationInfoUseCase;
+import com.quyennv.datn.communication_service.core.usecases.conversation.UpdateConversationUseCase;
+import com.quyennv.datn.communication_service.presenter.dto.ApiResponse;
+import com.quyennv.datn.communication_service.presenter.dto.conversation.CreateConversationRequest;
+import com.quyennv.datn.communication_service.presenter.dto.conversation.UpdateConversationRequest;
+import com.quyennv.datn.communication_service.presenter.mapper.conversation.CreateConversationUseCaseInputMapper;
+import com.quyennv.datn.communication_service.presenter.mapper.conversation.UpdateConversationUseCaseInputMapper;
+import com.quyennv.datn.communication_service.presenter.usecases.security.UserPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 

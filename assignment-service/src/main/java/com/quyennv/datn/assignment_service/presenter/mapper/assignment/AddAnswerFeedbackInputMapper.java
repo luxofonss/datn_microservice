@@ -1,8 +1,8 @@
-package com.quyennv.lms.presenter.rest.mapper.assignment;
+package com.quyennv.datn.assignment_service.presenter.mapper.assignment;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.assignment.TeacherAddQuestionFeedBackUseCase;
-import com.quyennv.lms.presenter.rest.dto.assignment.FeedbackAnswerRequest;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.usecases.answer_feedback.TeacherAddQuestionFeedBackUseCase;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.FeedbackAnswerRequest;
 
 public class AddAnswerFeedbackInputMapper {
     public static TeacherAddQuestionFeedBackUseCase.InputValues createInput(FeedbackAnswerRequest request, String requesterId, String answerId) {

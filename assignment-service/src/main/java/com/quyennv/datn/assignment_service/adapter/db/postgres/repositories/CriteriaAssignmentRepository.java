@@ -1,8 +1,7 @@
-package com.quyennv.lms.adapter.jpa.repositories;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.repositories;
 
-import com.quyennv.lms.adapter.jpa.entities.QuestionData;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.adapter.jpa.entities.AssignmentData;
+import com.quyennv.datn.assignment_service.adapter.db.postgres.entities.AssignmentData;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
@@ -10,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.print.attribute.Attribute;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

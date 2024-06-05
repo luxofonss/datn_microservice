@@ -1,7 +1,9 @@
-package com.quyennv.lms.core.domain.entities;
+package com.quyennv.datn.assignment_service.core.domain.entities;
 
-import com.quyennv.lms.core.domain.enums.AssignmentType;
-import com.quyennv.lms.core.utils.FunctionHelper;
+import com.quyennv.datn.assignment_service.core.domain.enums.AssignmentType;
+import com.quyennv.datn.assignment_service.core.utils.FunctionHelper;
+import com.quyennv.datn.assignment_service.core.domain.enums.AssignmentType;
+import com.quyennv.datn.assignment_service.core.utils.FunctionHelper;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +26,7 @@ public class Assignment {
     private String title;
     private String description;
     private Integer totalMark;
-    private Subject subject;
+    private Identity subjectId;
     private List<Question> questions;
 
     private Long duration;
@@ -32,8 +34,8 @@ public class Assignment {
     private LocalDateTime endTime;
     private AssignmentType assignmentType;
     private Long maxAttemptTimes;
-    private Lesson lesson;
-    private User creator;
+    private Identity lessonId;
+    private Identity createdBy;
 
     private List<AssignmentAttempt> attempts;
 

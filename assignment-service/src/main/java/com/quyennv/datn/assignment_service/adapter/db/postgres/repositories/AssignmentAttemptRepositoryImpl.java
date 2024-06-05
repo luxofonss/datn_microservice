@@ -1,9 +1,9 @@
-package com.quyennv.lms.adapter.jpa.repositories;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.repositories;
 
-import com.quyennv.lms.adapter.jpa.entities.AssignmentAttemptData;
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.assignment.AssignmentAttemptRepository;
+import com.quyennv.datn.assignment_service.adapter.db.postgres.entities.AssignmentAttemptData;
+import com.quyennv.datn.assignment_service.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentAttemptRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

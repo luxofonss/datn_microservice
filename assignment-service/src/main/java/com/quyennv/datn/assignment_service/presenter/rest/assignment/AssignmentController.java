@@ -1,12 +1,17 @@
-package com.quyennv.lms.presenter.rest.api.assignment;
+package com.quyennv.datn.assignment_service.presenter.rest.assignment;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.UseCaseExecutor;
-import com.quyennv.lms.core.usecases.assignment.*;
-import com.quyennv.lms.presenter.rest.dto.ApiResponse;
-import com.quyennv.lms.presenter.rest.dto.assignment.*;
-import com.quyennv.lms.presenter.rest.mapper.assignment.*;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.usecases.UseCaseExecutor;
+import com.quyennv.datn.assignment_service.core.usecases.answer_feedback.*;
+import com.quyennv.datn.assignment_service.core.usecases.assignment.*;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.AttemptAssignmentUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.GetAssignmentAttemptByIdUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.SubmitQuestionAnswerUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.question.AddQuestionsToAssignmentUseCase;
+import com.quyennv.datn.assignment_service.presenter.dto.ApiResponse;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.*;
+import com.quyennv.datn.assignment_service.presenter.mapper.assignment.*;
+import com.quyennv.datn.assignment_service.presenter.usecases.security.UserPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 
@@ -243,14 +248,14 @@ public class AssignmentController implements AssignmentResource{
     public CompletableFuture<ApiResponse> updateFeedbackQuestionAnswer(
             String attemptId,
             String answerId,
-            String feedBackId,
+            String feedbackId,
             FeedbackAnswerRequest req,
             UserPrincipal requester,
             HttpServletRequest httpServletRequest) {
         return useCaseExecutor.execute(
                 updateQuestionAnswerFeedbackUseCase,
                 UpdateAnswerFeedbackInputMapper.map(
-                        feedBackId,
+                        feedbackId,
                         req,
                         requester.getId().toString()
                 ),
@@ -263,13 +268,13 @@ public class AssignmentController implements AssignmentResource{
     public CompletableFuture<ApiResponse> deleteFeedbackQuestionAnswer(
             String attemptId,
             String answerId,
-            String feedBackId,
+            String feedbackId,
             UserPrincipal requester,
             HttpServletRequest httpServletRequest) {
         return useCaseExecutor.execute(
                 deleteQuestionAnswerFeedbackUseCase,
                 UpdateAnswerFeedbackInputMapper.map(
-                        feedBackId,
+                        feedbackId,
                         FeedbackAnswerRequest.builder().build(),
                         requester.getId().toString()
                 ),

@@ -1,14 +1,16 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.communication_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.entities.Conversation;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.enums.ConversationType;
+import com.quyennv.datn.communication_service.core.domain.entities.Conversation;
+import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.domain.enums.ConversationType;
+import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity(name="conversations")
 @Table(name = "conversations")
@@ -17,7 +19,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
-@ToString(exclude = {"user", "course", "lesson"})
+@ToString
 @Slf4j
 public class ConversationData extends BaseEntity{
     @Enumerated(EnumType.STRING)
@@ -25,17 +27,12 @@ public class ConversationData extends BaseEntity{
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private UserData user;
+    @Column(name="user_id")
+    UUID userId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="course_id")
-    private CourseData course;
+    @Column(name="target_placement_id")
+    UUID targetPlacementId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="lesson_id")
-    private LessonData lesson;
 
     @OneToMany(mappedBy = "conversation", fetch = FetchType.LAZY)
     private List<CommentData> comments;
@@ -45,22 +42,13 @@ public class ConversationData extends BaseEntity{
                 .builder()
                 .type(conversation.getType())
                 .content(conversation.getContent())
+                .targetPlacementId(Objects.nonNull(conversation.getTargetPlacementId())
+                        ? conversation.getTargetPlacementId().getUUID()
+                        : null)
                 .build();
 
         if (Objects.nonNull(conversation.getId())) {
             result.setId(conversation.getId().getId());
-        }
-
-        if (Objects.nonNull(conversation.getUser())) {
-            result.setUser(UserData.from(conversation.getUser()));
-        }
-
-        if (Objects.nonNull(conversation.getCourse())) {
-            result.setCourse(CourseData.from(conversation.getCourse()));
-        }
-
-        if (Objects.nonNull(conversation.getLesson())) {
-            result.setLesson(LessonData.from(conversation.getLesson()));
         }
 
         result.setCreatedAt(conversation.getCreatedAt());
@@ -71,10 +59,13 @@ public class ConversationData extends BaseEntity{
     }
 
     public Conversation fromThis() {
+        log.info("this:: {}", this);
         Conversation result = Conversation
                 .builder()
                 .type(this.getType())
                 .content(this.getContent())
+                .user(User.builder().id(Identity.from(this.userId)).build())
+                .targetPlacementId(Identity.from(this.targetPlacementId))
                 .createdAt(this.getCreatedAt())
                 .updatedAt(this.getUpdatedAt())
                 .deletedAt(this.getDeletedAt())
@@ -82,10 +73,6 @@ public class ConversationData extends BaseEntity{
 
         if (Objects.nonNull(this.getId())) {
             result.setId(Identity.from(this.getId()));
-        }
-
-        if (Objects.nonNull(this.getUser())) {
-            result.setUser(this.getUser().fromThis());
         }
 
         if (Objects.nonNull(this.getComments())) {

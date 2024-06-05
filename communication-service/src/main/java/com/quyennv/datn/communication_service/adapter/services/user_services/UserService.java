@@ -1,7 +1,7 @@
 package com.quyennv.datn.communication_service.adapter.services.user_services;
 
-import com.quyennv.datn.assignment_service.presenter.dto.ApiResponse;
-import com.quyennv.datn.assignment_service.presenter.dto.user.UserResponse;
+import com.quyennv.datn.communication_service.presenter.dto.ApiResponse;
+import com.quyennv.datn.communication_service.presenter.dto.user.UserResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

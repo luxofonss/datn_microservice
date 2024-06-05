@@ -1,6 +1,7 @@
-package com.quyennv.lms.core.domain.entities;
+package com.quyennv.datn.communication_service.core.domain.entities;
 
-import com.quyennv.lms.core.domain.enums.ConversationType;
+import com.quyennv.datn.communication_service.core.domain.enums.ConversationType;
+import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +21,7 @@ public class Conversation {
     ConversationType type;
     String content;
     User user;
-    Course course;
-    Lesson lesson;
+    Identity targetPlacementId;
     List<Comment> comments;
 
     LocalDateTime createdAt;

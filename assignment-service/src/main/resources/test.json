@@ -1,0 +1,529 @@
+{
+  "success": true,
+  "message": "ok",
+  "data": {
+    "id": "9504e761-4fcf-4cb7-8c33-3c3b3e231302",
+    "studentId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+    "assignment": {
+      "id": "245c46f2-5e50-49b0-80be-e21521a0c929",
+      "title": "new title",
+      "description": "string new",
+      "totalMark": 8,
+      "subjectId": "39d6e7e7-1536-4bf3-aabe-194e57843324",
+      "questions": [
+        {
+          "id": "3838e9f8-beaa-4487-a3b6-c1d52772aa62",
+          "level": "MEDIUM",
+          "title": "new",
+          "image": "link",
+          "audio": "link",
+          "mark": 2,
+          "type": "SINGLE_CHOICE",
+          "answerExplanation": "string",
+          "choices": [
+            {
+              "id": "de6dedc5-85d3-4625-8078-a80c57654bfd",
+              "order": 1,
+              "isCorrect": false,
+              "content": "string",
+              "explanation": "string",
+              "question": null,
+              "chosenAnswers": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "deletedAt": null
+            },
+            {
+              "id": "15ac05cf-bd65-46e8-803c-6d31dbe11b02",
+              "order": 1,
+              "isCorrect": true,
+              "content": "string2",
+              "explanation": "string",
+              "question": null,
+              "chosenAnswers": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "deletedAt": null
+            }
+          ],
+          "textAnswers": [
+            {
+              "id": "10f633bc-57a0-4974-b06d-bc347969caf8",
+              "answer": "string",
+              "explanation": "string",
+              "question": null,
+              "createdAt": "2024-05-19T10:49:32.766741",
+              "updatedAt": "2024-05-19T10:49:32.766741",
+              "deletedAt": null
+            }
+          ],
+          "answer": null,
+          "assignment": null,
+          "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+          "subjectId": "39d6e7e7-1536-4bf3-aabe-194e57843324",
+          "question": null,
+          "subQuestions": [
+            {
+              "id": "f0b070cf-3935-40d3-abd5-3fc2e7bc1c14",
+              "level": "MEDIUM",
+              "title": "new",
+              "image": "link",
+              "audio": "link",
+              "mark": 2,
+              "type": "SINGLE_CHOICE",
+              "answerExplanation": "string",
+              "choices": [
+                {
+                  "id": "12df6598-f019-41b8-8be2-d850adfb6521",
+                  "order": 1,
+                  "isCorrect": false,
+                  "content": "string",
+                  "explanation": "string",
+                  "question": null,
+                  "chosenAnswers": null,
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "deletedAt": null
+                },
+                {
+                  "id": "eb456a25-569d-41e3-b5e9-acd2ada4caf4",
+                  "order": 1,
+                  "isCorrect": true,
+                  "content": "string2",
+                  "explanation": "string",
+                  "question": null,
+                  "chosenAnswers": null,
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "deletedAt": null
+                }
+              ],
+              "textAnswers": [
+                {
+                  "id": "f809348d-d510-4edc-964f-fc89d2e29ec8",
+                  "answer": "string",
+                  "explanation": "string",
+                  "question": null,
+                  "createdAt": "2024-05-19T10:49:32.765174",
+                  "updatedAt": "2024-05-19T10:49:32.765174",
+                  "deletedAt": null
+                }
+              ],
+              "answer": null,
+              "assignment": null,
+              "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+              "subjectId": "39d6e7e7-1536-4bf3-aabe-194e57843324",
+              "question": null,
+              "subQuestions": [],
+              "createdAt": null,
+              "updatedAt": null,
+              "deletedAt": null
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "deletedAt": null
+        },
+        {
+          "id": "be68d716-4250-486d-823e-e5a71bbd2cf1",
+          "level": "MEDIUM",
+          "title": "add question",
+          "image": "link",
+          "audio": "link",
+          "mark": 2,
+          "type": "SINGLE_CHOICE",
+          "answerExplanation": "string",
+          "choices": [
+            {
+              "id": "5931391c-424e-4e19-8679-d21f28fc244c",
+              "order": 1,
+              "isCorrect": false,
+              "content": "string new",
+              "explanation": "string",
+              "question": null,
+              "chosenAnswers": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "deletedAt": null
+            }
+          ],
+          "textAnswers": [
+            {
+              "id": "1b78c26b-813c-468e-b93a-ffeadc63d5fc",
+              "answer": "strin newg",
+              "explanation": "string",
+              "question": null,
+              "createdAt": "2024-05-19T10:52:00.141648",
+              "updatedAt": "2024-05-19T10:52:00.141648",
+              "deletedAt": null
+            }
+          ],
+          "answer": null,
+          "assignment": null,
+          "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+          "subjectId": null,
+          "question": null,
+          "subQuestions": [],
+          "createdAt": null,
+          "updatedAt": null,
+          "deletedAt": null
+        },
+        {
+          "id": "811db5b3-0078-461d-bc52-b95ec7ad2bc6",
+          "level": "MEDIUM",
+          "title": "add question",
+          "image": "link",
+          "audio": "link",
+          "mark": 2,
+          "type": "SINGLE_CHOICE",
+          "answerExplanation": "string",
+          "choices": [
+            {
+              "id": "ab1afa65-d0f3-470c-8c4a-4066ae95a9f3",
+              "order": 1,
+              "isCorrect": false,
+              "content": "string new",
+              "explanation": "string",
+              "question": null,
+              "chosenAnswers": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "deletedAt": null
+            }
+          ],
+          "textAnswers": [
+            {
+              "id": "807bb337-fefc-4444-8b51-4d5041aa3bba",
+              "answer": "strin newg",
+              "explanation": "string",
+              "question": null,
+              "createdAt": "2024-05-19T10:52:14.563399",
+              "updatedAt": "2024-05-19T10:52:14.563399",
+              "deletedAt": null
+            }
+          ],
+          "answer": null,
+          "assignment": null,
+          "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+          "subjectId": null,
+          "question": null,
+          "subQuestions": [],
+          "createdAt": null,
+          "updatedAt": null,
+          "deletedAt": null
+        },
+        {
+          "id": "11664f13-70fc-4a4b-a7fe-0a24af832cff",
+          "level": "MEDIUM",
+          "title": "add question",
+          "image": "link",
+          "audio": "link",
+          "mark": 2,
+          "type": "SINGLE_CHOICE",
+          "answerExplanation": "string",
+          "choices": [
+            {
+              "id": "68246ce4-6d7c-4a82-8adc-b6b0968191de",
+              "order": 1,
+              "isCorrect": false,
+              "content": "string new",
+              "explanation": "string",
+              "question": null,
+              "chosenAnswers": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "deletedAt": null
+            }
+          ],
+          "textAnswers": [
+            {
+              "id": "85e68282-614a-4c35-8ca5-054cd10025c8",
+              "answer": "strin newg",
+              "explanation": "string",
+              "question": null,
+              "createdAt": "2024-05-19T11:21:34.441967",
+              "updatedAt": "2024-05-19T11:21:34.441967",
+              "deletedAt": null
+            }
+          ],
+          "answer": null,
+          "assignment": null,
+          "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+          "subjectId": null,
+          "question": null,
+          "subQuestions": [],
+          "createdAt": null,
+          "updatedAt": null,
+          "deletedAt": null
+        }
+      ],
+      "duration": 60000,
+      "startTime": "2024-05-15T08:30:00",
+      "endTime": "2024-12-15T08:30:00",
+      "assignmentType": "MIDTERM",
+      "maxAttemptTimes": 4,
+      "lessonId": "fa6584ef-7d44-4699-b455-bbb93ba9a436",
+      "createdBy": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+      "attempts": [],
+      "createdAt": "2024-05-19T10:49:32.757106",
+      "updatedAt": "2024-05-19T11:21:34.448546",
+      "deletedAt": null
+    },
+    "answers": null,
+    "startTime": "2024-05-19T11:22:55.4388469",
+    "endTime": "2024-06-30T03:22:55.4388469",
+    "submittedAt": null,
+    "teacherComment": null,
+    "totalMark": null,
+    "createdAt": null,
+    "updatedAt": null,
+    "deletedAt": null,
+    "questions": [
+      {
+        "id": "3838e9f8-beaa-4487-a3b6-c1d52772aa62",
+        "level": "MEDIUM",
+        "title": "new",
+        "image": "link",
+        "audio": "link",
+        "mark": 2,
+        "type": "SINGLE_CHOICE",
+        "answerExplanation": "string",
+        "choices": [
+          {
+            "id": "de6dedc5-85d3-4625-8078-a80c57654bfd",
+            "order": 1,
+            "isCorrect": false,
+            "content": "string",
+            "explanation": "string",
+            "question": null,
+            "chosenAnswers": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "deletedAt": null
+          },
+          {
+            "id": "15ac05cf-bd65-46e8-803c-6d31dbe11b02",
+            "order": 1,
+            "isCorrect": true,
+            "content": "string2",
+            "explanation": "string",
+            "question": null,
+            "chosenAnswers": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "deletedAt": null
+          }
+        ],
+        "textAnswers": [
+          {
+            "id": "10f633bc-57a0-4974-b06d-bc347969caf8",
+            "answer": "string",
+            "explanation": "string",
+            "question": null,
+            "createdAt": "2024-05-19T10:49:32.766741",
+            "updatedAt": "2024-05-19T10:49:32.766741",
+            "deletedAt": null
+          }
+        ],
+        "answer": null,
+        "assignment": null,
+        "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+        "subjectId": "39d6e7e7-1536-4bf3-aabe-194e57843324",
+        "question": null,
+        "subQuestions": [
+          {
+            "id": "f0b070cf-3935-40d3-abd5-3fc2e7bc1c14",
+            "level": "MEDIUM",
+            "title": "new",
+            "image": "link",
+            "audio": "link",
+            "mark": 2,
+            "type": "SINGLE_CHOICE",
+            "answerExplanation": "string",
+            "choices": [
+              {
+                "id": "12df6598-f019-41b8-8be2-d850adfb6521",
+                "order": 1,
+                "isCorrect": false,
+                "content": "string",
+                "explanation": "string",
+                "question": null,
+                "chosenAnswers": null,
+                "createdAt": null,
+                "updatedAt": null,
+                "deletedAt": null
+              },
+              {
+                "id": "eb456a25-569d-41e3-b5e9-acd2ada4caf4",
+                "order": 1,
+                "isCorrect": true,
+                "content": "string2",
+                "explanation": "string",
+                "question": null,
+                "chosenAnswers": null,
+                "createdAt": null,
+                "updatedAt": null,
+                "deletedAt": null
+              }
+            ],
+            "textAnswers": [
+              {
+                "id": "f809348d-d510-4edc-964f-fc89d2e29ec8",
+                "answer": "string",
+                "explanation": "string",
+                "question": null,
+                "createdAt": "2024-05-19T10:49:32.765174",
+                "updatedAt": "2024-05-19T10:49:32.765174",
+                "deletedAt": null
+              }
+            ],
+            "answer": null,
+            "assignment": null,
+            "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+            "subjectId": "39d6e7e7-1536-4bf3-aabe-194e57843324",
+            "question": null,
+            "subQuestions": [],
+            "createdAt": null,
+            "updatedAt": null,
+            "deletedAt": null
+          }
+        ],
+        "createdAt": null,
+        "updatedAt": null,
+        "deletedAt": null
+      },
+      {
+        "id": "be68d716-4250-486d-823e-e5a71bbd2cf1",
+        "level": "MEDIUM",
+        "title": "add question",
+        "image": "link",
+        "audio": "link",
+        "mark": 2,
+        "type": "SINGLE_CHOICE",
+        "answerExplanation": "string",
+        "choices": [
+          {
+            "id": "5931391c-424e-4e19-8679-d21f28fc244c",
+            "order": 1,
+            "isCorrect": false,
+            "content": "string new",
+            "explanation": "string",
+            "question": null,
+            "chosenAnswers": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "deletedAt": null
+          }
+        ],
+        "textAnswers": [
+          {
+            "id": "1b78c26b-813c-468e-b93a-ffeadc63d5fc",
+            "answer": "strin newg",
+            "explanation": "string",
+            "question": null,
+            "createdAt": "2024-05-19T10:52:00.141648",
+            "updatedAt": "2024-05-19T10:52:00.141648",
+            "deletedAt": null
+          }
+        ],
+        "answer": null,
+        "assignment": null,
+        "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+        "subjectId": null,
+        "question": null,
+        "subQuestions": [],
+        "createdAt": null,
+        "updatedAt": null,
+        "deletedAt": null
+      },
+      {
+        "id": "811db5b3-0078-461d-bc52-b95ec7ad2bc6",
+        "level": "MEDIUM",
+        "title": "add question",
+        "image": "link",
+        "audio": "link",
+        "mark": 2,
+        "type": "SINGLE_CHOICE",
+        "answerExplanation": "string",
+        "choices": [
+          {
+            "id": "ab1afa65-d0f3-470c-8c4a-4066ae95a9f3",
+            "order": 1,
+            "isCorrect": false,
+            "content": "string new",
+            "explanation": "string",
+            "question": null,
+            "chosenAnswers": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "deletedAt": null
+          }
+        ],
+        "textAnswers": [
+          {
+            "id": "807bb337-fefc-4444-8b51-4d5041aa3bba",
+            "answer": "strin newg",
+            "explanation": "string",
+            "question": null,
+            "createdAt": "2024-05-19T10:52:14.563399",
+            "updatedAt": "2024-05-19T10:52:14.563399",
+            "deletedAt": null
+          }
+        ],
+        "answer": null,
+        "assignment": null,
+        "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+        "subjectId": null,
+        "question": null,
+        "subQuestions": [],
+        "createdAt": null,
+        "updatedAt": null,
+        "deletedAt": null
+      },
+      {
+        "id": "11664f13-70fc-4a4b-a7fe-0a24af832cff",
+        "level": "MEDIUM",
+        "title": "add question",
+        "image": "link",
+        "audio": "link",
+        "mark": 2,
+        "type": "SINGLE_CHOICE",
+        "answerExplanation": "string",
+        "choices": [
+          {
+            "id": "68246ce4-6d7c-4a82-8adc-b6b0968191de",
+            "order": 1,
+            "isCorrect": false,
+            "content": "string new",
+            "explanation": "string",
+            "question": null,
+            "chosenAnswers": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "deletedAt": null
+          }
+        ],
+        "textAnswers": [
+          {
+            "id": "85e68282-614a-4c35-8ca5-054cd10025c8",
+            "answer": "strin newg",
+            "explanation": "string",
+            "question": null,
+            "createdAt": "2024-05-19T11:21:34.441967",
+            "updatedAt": "2024-05-19T11:21:34.441967",
+            "deletedAt": null
+          }
+        ],
+        "answer": null,
+        "assignment": null,
+        "creatorId": "215dd1fc-cf50-470d-9364-e14596d2f7cc",
+        "subjectId": null,
+        "question": null,
+        "subQuestions": [],
+        "createdAt": null,
+        "updatedAt": null,
+        "deletedAt": null
+      }
+    ]
+  }
+}

@@ -1,8 +1,7 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.repositories;
 
-import com.quyennv.lms.core.domain.entities.Assignment;
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Assignment;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
 
 import java.util.List;
 import java.util.Optional;

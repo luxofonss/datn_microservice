@@ -1,7 +1,7 @@
-package com.quyennv.lms.presenter.rest.dto;
+package com.quyennv.datn.communication_service.presenter.dto.conversation;
 
-import com.quyennv.lms.core.domain.enums.ConversationType;
-import com.quyennv.lms.presenter.config.annotations.ValueOfEnum;
+import com.quyennv.datn.communication_service.core.domain.enums.ConversationType;
+import com.quyennv.datn.communication_service.presenter.config.annotations.ValueOfEnum;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,6 +13,5 @@ public class UpdateConversationRequest {
     private String content;
     @ValueOfEnum(enumClass = ConversationType.class)
     private String type;
-    private UUID lessonId;
-    private UUID courseId;
+    private UUID targetPlacementId;
 }

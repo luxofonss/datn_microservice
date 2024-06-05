@@ -1,6 +1,6 @@
 package com.quyennv.datn.assignment_service.presenter.common;
 
-import com.quyennv.datn.courseservice.presenter.dto.ApiResponse;
+import com.quyennv.datn.assignment_service.presenter.dto.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.http.HttpStatus;

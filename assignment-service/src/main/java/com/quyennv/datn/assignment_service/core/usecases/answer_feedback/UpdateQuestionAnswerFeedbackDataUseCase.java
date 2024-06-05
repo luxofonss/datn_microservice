@@ -1,7 +1,8 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.answer_feedback;
 
-import com.quyennv.lms.core.domain.entities.QuestionAnswerFeedback;
-import com.quyennv.lms.core.domain.entities.User;
+import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswerFeedback;
+import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerFeedbackRepository;
+import com.quyennv.datn.assignment_service.core.repositories.UpdateQuestionAnswerFeedbackUseCase;
 
 public class UpdateQuestionAnswerFeedbackDataUseCase extends UpdateQuestionAnswerFeedbackUseCase {
     public UpdateQuestionAnswerFeedbackDataUseCase(QuestionAnswerFeedbackRepository questionAnswerFeedbackRepository) {
@@ -13,7 +14,7 @@ public class UpdateQuestionAnswerFeedbackDataUseCase extends UpdateQuestionAnswe
         QuestionAnswerFeedback feedback = QuestionAnswerFeedback.builder()
                 .id(currentFeedback.getId())
                 .message(input.getMessage())
-                .creator(User.builder().id(input.getRequesterId()).build())
+                .creatorId(input.getRequesterId())
                 .build();
         return currentFeedback.update(feedback);
     }

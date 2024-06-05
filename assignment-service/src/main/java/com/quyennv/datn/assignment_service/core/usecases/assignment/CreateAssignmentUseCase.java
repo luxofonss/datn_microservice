@@ -1,8 +1,9 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment;
 
-import com.quyennv.lms.core.domain.entities.*;
-import com.quyennv.lms.core.domain.enums.*;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.*;
+import com.quyennv.datn.assignment_service.core.domain.enums.*;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentRepository;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
@@ -41,15 +42,15 @@ public class CreateAssignmentUseCase extends UseCase<
                 .builder()
                 .title(input.getTitle())
                 .description(input.getDescription())
-                .creator(User.builder().id(input.getTeacherId()).build())
-                .subject(Subject.builder().id(input.getSubjectId()).build())
+                .createdBy(input.getTeacherId())
+                .subjectId(input.getSubjectId())
                 .totalMark(mark.get())
                 .duration(input.getDuration())
                 .startTime(input.getStartTime())
                 .endTime(input.getEndTime())
                 .assignmentType(input.getAssignmentType())
                 .maxAttemptTimes(input.getMaxAttemptTimes())
-                .lesson(Objects.nonNull(input.getLessonId()) ? Lesson.builder().id(input.getLessonId()).build() : null)
+                .lessonId(input.getLessonId())
                 .build();
 
         List<Question> questions = mapQuestions(input.getQuestions(), input);
@@ -67,11 +68,11 @@ public class CreateAssignmentUseCase extends UseCase<
                             .title(q.getTitle())
                             .image(q.getImage())
                             .audio(q.getAudio())
-                            .subject(Subject.builder().id(input.getSubjectId()).build())
+                            .subjectId(input.getSubjectId())
+                            .creatorId(input.getTeacherId())
                             .mark(q.getMark())
                             .type(q.getType())
                             .answerExplanation(q.getAnswerExplanation())
-                            .creator(User.builder().id(input.getTeacherId()).build())
                             .build();
 
                     if(Objects.nonNull(q.getChoices())) {

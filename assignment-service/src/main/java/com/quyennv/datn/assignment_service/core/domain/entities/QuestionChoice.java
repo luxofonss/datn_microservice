@@ -1,6 +1,6 @@
-package com.quyennv.lms.core.domain.entities;
+package com.quyennv.datn.assignment_service.core.domain.entities;
 
-import com.quyennv.lms.core.utils.FunctionHelper;
+import com.quyennv.datn.assignment_service.core.utils.FunctionHelper;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 

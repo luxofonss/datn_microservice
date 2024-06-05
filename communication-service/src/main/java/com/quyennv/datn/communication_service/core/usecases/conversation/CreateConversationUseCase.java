@@ -1,8 +1,9 @@
-package com.quyennv.lms.core.usecases.conversation;
+package com.quyennv.datn.communication_service.core.usecases.conversation;
 
-import com.quyennv.lms.core.domain.entities.*;
-import com.quyennv.lms.core.domain.enums.ConversationType;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.communication_service.core.domain.entities.*;
+import com.quyennv.datn.communication_service.core.domain.enums.ConversationType;
+import com.quyennv.datn.communication_service.core.domain.valueobject.User;
+import com.quyennv.datn.communication_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
 
@@ -20,9 +21,8 @@ public class CreateConversationUseCase extends UseCase<CreateConversationUseCase
                 .builder()
                 .content(input.getContent())
                 .type(input.getType())
-                .lesson(input.getLessonId() != null ? Lesson.builder().id(input.getLessonId()).build() : null)
                 .user(input.getUserId() != null ? User.builder().id(input.getUserId()).build() : null)
-                .course(input.getCourseId() != null ? Course.builder().id(input.getCourseId()).build() : null)
+                .targetPlacementId(input.getTargetPlacementId())
                 .build();
         return new OutputValues(conversationRepository.save(data));
     }
@@ -32,9 +32,8 @@ public class CreateConversationUseCase extends UseCase<CreateConversationUseCase
     public static class InputValues implements UseCase.InputValues {
         String content;
         ConversationType type;
-        Identity lessonId;
         Identity userId;
-        Identity courseId;
+        Identity targetPlacementId;
     }
 
     @Value

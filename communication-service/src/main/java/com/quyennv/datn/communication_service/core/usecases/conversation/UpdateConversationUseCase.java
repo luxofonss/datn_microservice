@@ -1,8 +1,8 @@
-package com.quyennv.lms.core.usecases.conversation;
+package com.quyennv.datn.communication_service.core.usecases.conversation;
 
-import com.quyennv.lms.core.domain.entities.*;
-import com.quyennv.lms.core.domain.enums.ConversationType;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.communication_service.core.domain.entities.*;
+import com.quyennv.datn.communication_service.core.domain.enums.ConversationType;
+import com.quyennv.datn.communication_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
 
@@ -29,9 +29,8 @@ public abstract class UpdateConversationUseCase extends UseCase<UpdateConversati
         Identity id;
         String content;
         ConversationType type;
-        Identity lessonId;
+        Identity targetPlacementId;
         Identity userId;
-        Identity courseId;
     }
 
     @Value

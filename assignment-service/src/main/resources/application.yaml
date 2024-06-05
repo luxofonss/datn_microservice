@@ -20,4 +20,4 @@ spring:
 
 app:
   services:
-    user: http://localhost:8081/users
+    user: http://localhost:8088/users

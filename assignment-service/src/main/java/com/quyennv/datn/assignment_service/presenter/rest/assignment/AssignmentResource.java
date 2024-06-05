@@ -1,18 +1,19 @@
-package com.quyennv.lms.presenter.rest.api.assignment;
+package com.quyennv.datn.assignment_service.presenter.rest.assignment;
 
-import com.quyennv.lms.presenter.rest.dto.ApiResponse;
-import com.quyennv.lms.presenter.rest.dto.assignment.*;
-import com.quyennv.lms.presenter.usecases.security.CurrentUser;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.assignment_service.presenter.dto.ApiResponse;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.*;
+import com.quyennv.datn.assignment_service.presenter.usecases.security.CurrentUser;
+import com.quyennv.datn.assignment_service.presenter.usecases.security.UserPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/api/v1/assignments")
+@RequestMapping
 public interface AssignmentResource {
     @PostMapping
     CompletableFuture<ApiResponse> create(

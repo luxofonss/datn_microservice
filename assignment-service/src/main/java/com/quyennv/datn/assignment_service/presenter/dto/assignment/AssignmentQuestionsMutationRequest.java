@@ -1,9 +1,8 @@
-package com.quyennv.lms.presenter.rest.dto.assignment;
+package com.quyennv.datn.assignment_service.presenter.dto.assignment;
 
-import com.quyennv.lms.core.domain.enums.QuestionLevel;
-import com.quyennv.lms.core.domain.enums.QuestionType;
-import com.quyennv.lms.presenter.config.annotations.ValueOfEnum;
-import jakarta.validation.constraints.NotBlank;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionLevel;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionType;
+import com.quyennv.datn.assignment_service.presenter.config.annotations.ValueOfEnum;
 import lombok.Value;
 
 import java.util.List;

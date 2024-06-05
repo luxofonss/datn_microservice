@@ -1,9 +1,9 @@
-package com.quyennv.lms.presenter.rest.mapper.comment;
+package com.quyennv.datn.communication_service.presenter.mapper.comment;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.usecases.comment.CreateCommentUseCase;
-import com.quyennv.lms.presenter.rest.dto.CreateCommentRequest;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.usecases.comment.CreateCommentUseCase;
+import com.quyennv.datn.communication_service.presenter.dto.comment.CreateCommentRequest;
+import com.quyennv.datn.communication_service.presenter.usecases.security.UserPrincipal;
 
 public class CreateCommentUseCaseInputMapper {
     public static CreateCommentUseCase.InputValues map(CreateCommentRequest request, UserPrincipal requester) {

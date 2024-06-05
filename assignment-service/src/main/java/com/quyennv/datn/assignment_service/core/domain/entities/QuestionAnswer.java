@@ -1,6 +1,5 @@
-package com.quyennv.lms.core.domain.entities;
+package com.quyennv.datn.assignment_service.core.domain.entities;
 
-import com.quyennv.lms.core.domain.enums.QuestionChoiceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,11 +18,12 @@ public class QuestionAnswer {
     private String textAnswer;
     private String teacherFixedTextAnswer;
     private Integer score;
-    private User creator;
+    private Identity creatorId;
     private Question question;
     private Set<QuestionChoice> selectedOptions;
     private List<QuestionAnswerFeedback> feedbacks;
     private AssignmentAttempt assignmentAttempt;
+    private Identity assignmentAttemptId;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

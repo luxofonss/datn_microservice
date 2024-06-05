@@ -1,6 +1,7 @@
-package com.quyennv.lms.adapter.jpa.repositories;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.repositories;
 
-import com.quyennv.lms.adapter.jpa.entities.QuestionData;
+
+import com.quyennv.datn.assignment_service.adapter.db.postgres.entities.QuestionData;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

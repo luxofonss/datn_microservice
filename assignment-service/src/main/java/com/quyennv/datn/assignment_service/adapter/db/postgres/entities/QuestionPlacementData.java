@@ -1,8 +1,10 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.enums.QuestionLevel;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionLevel;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.UUID;
 
 @Entity(name="question_placement")
 @Getter
@@ -26,7 +28,6 @@ public class QuestionPlacementData extends BaseEntity{
     @JoinColumn(name="assignment_id", nullable = false)
     private AssignmentData assignment;
 
-    @ManyToOne
-    @JoinColumn(name="creator_id", nullable = false)
-    private UserData creator;
+    @Column(name="creator_id")
+    private UUID creatorId;
 }

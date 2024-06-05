@@ -1,7 +1,10 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment_attempt;
 
-import com.quyennv.lms.core.domain.entities.*;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.*;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentAttemptRepository;
+import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerRepository;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.usecases.assignment.UpdateAssignmentScoreUseCase;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +60,7 @@ public class SubmitQuestionAnswerUseCase extends UseCase<
                 .builder()
                 .question(Question.builder().id(input.getQuestionId()).build())
                 .textAnswer(input.getTextAnswer())
-                .creator(User.builder().id(input.requesterId).build())
+                .creatorId(input.requesterId)
                 .selectedOptions(Objects.nonNull(input.getSelectedAnswerIds()) ? input.getSelectedAnswerIds().stream().map(optionId ->
                         QuestionChoice.builder().id(optionId).build()).collect(Collectors.toSet()) : null)
                 .assignmentAttempt(assignmentAttempt)

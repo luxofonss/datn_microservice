@@ -1,14 +1,14 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment;
 
-import com.quyennv.lms.core.domain.entities.Assignment;
-import com.quyennv.lms.core.domain.entities.Question;
-import com.quyennv.lms.core.domain.entities.Subject;
-import com.quyennv.lms.core.domain.entities.User;
+import com.quyennv.datn.assignment_service.core.domain.entities.Assignment;
+import com.quyennv.datn.assignment_service.core.domain.entities.Question;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentRepository;
+import com.quyennv.datn.assignment_service.core.repositories.UpdateAssignmentUseCase;
 
 import java.util.List;
 import java.util.Objects;
 
-public class UpdateAssignmentDetailUseCase extends UpdateAssignmentUseCase{
+public class UpdateAssignmentDetailUseCase extends UpdateAssignmentUseCase {
     public UpdateAssignmentDetailUseCase(AssignmentRepository assignmentRepository) {
         super(assignmentRepository);
     }
@@ -20,9 +20,9 @@ public class UpdateAssignmentDetailUseCase extends UpdateAssignmentUseCase{
                 .id(input.getAssignmentId())
                 .title(input.getTitle())
                 .description(input.getDescription())
-                .creator(Objects.nonNull(input.getTeacherId()) ? User.builder().id(input.getTeacherId()).build() : null)
+                .createdBy(assignment.getCreatedBy())
                 .totalMark(assignment.getTotalMark())
-                .subject(Objects.nonNull(input.getSubjectId()) ? Subject.builder().id(input.getSubjectId()).build() : null)
+                .subjectId(assignment.getSubjectId())
                 .duration(input.getDuration())
                 .startTime(input.getStartTime())
                 .endTime(input.getEndTime())

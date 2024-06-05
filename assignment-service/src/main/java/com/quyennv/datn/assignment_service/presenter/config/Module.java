@@ -1,125 +1,93 @@
 package com.quyennv.datn.assignment_service.presenter.config;
 
-import com.quyennv.datn.courseservice.adapter.services.user_services.UserService;
-import com.quyennv.datn.courseservice.core.repositories.CourseRepository;
-import com.quyennv.datn.courseservice.core.repositories.CourseStudentRepository;
-import com.quyennv.datn.courseservice.core.repositories.CourseUserRepository;
-import com.quyennv.datn.courseservice.core.repositories.LessonStudentRepository;
-import com.quyennv.datn.courseservice.core.usecases.coure.*;
-import com.quyennv.datn.courseservice.core.usecases.course_student.*;
-import com.quyennv.datn.courseservice.core.usecases.lesson.*;
-import com.quyennv.datn.courseservice.core.usecases.section.CreateSectionsUseCase;
-import com.quyennv.datn.courseservice.core.usecases.section.DeleteSectionsUseCase;
-import com.quyennv.datn.courseservice.core.usecases.section.UpdateSectionsUseCase;
+import com.quyennv.datn.assignment_service.adapter.services.user_services.UserService;
+import com.quyennv.datn.assignment_service.core.repositories.*;
+import com.quyennv.datn.assignment_service.core.usecases.answer_feedback.*;
+import com.quyennv.datn.assignment_service.core.usecases.assignment.*;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.AttemptAssignmentUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.GetAssignmentAttemptByIdUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.SubmitQuestionAnswerUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.question.AddQuestionsToAssignmentUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Module {
     @Bean
-    CreateCourseUseCase createCourseUseCase(CourseRepository repository) {
-        return new CreateCourseUseCase(repository);
+    CreateAssignmentUseCase createAssignmentUseCase(AssignmentRepository assignmentRepository) {
+        return new CreateAssignmentUseCase(assignmentRepository);
     }
 
     @Bean
-    CreateSectionsUseCase createSectionUseCase(CourseRepository repository) {
-        return new CreateSectionsUseCase(repository);
+    UpdateAssignmentDetailUseCase updateAssignmentDetailUseCase(AssignmentRepository assignmentRepository) {
+        return new UpdateAssignmentDetailUseCase(assignmentRepository);
     }
 
     @Bean
-    UpdateSectionsUseCase updateSectionsUseCase(CourseRepository repository) {
-        return new UpdateSectionsUseCase(repository);
+    AddQuestionsToAssignmentUseCase addQuestionsToAssignmentUseCase(AssignmentRepository assignmentRepository,
+                                                                    QuestionRepository questionRepository) {
+        return new AddQuestionsToAssignmentUseCase(assignmentRepository, questionRepository);
     }
 
     @Bean
-    DeleteSectionsUseCase deleteSectionsUseCase(CourseRepository repository){
-        return new DeleteSectionsUseCase(repository);
+    GetOneAssignmentUseCase getOneAssignmentUseCase(AssignmentRepository assignmentRepository) {
+        return new GetOneAssignmentUseCase(assignmentRepository);
+    }
+    @Bean
+    AttemptAssignmentUseCase attemptAssignmentUseCase(
+            AssignmentRepository assignmentRepository,
+            AssignmentAttemptRepository assignmentAttemptRepository) {
+        return new AttemptAssignmentUseCase(assignmentRepository, assignmentAttemptRepository);
     }
 
     @Bean
-    CreateLessonsUseCase createLessonsUseCase(CourseRepository repository) {
-        return new CreateLessonsUseCase(repository);
+    SubmitQuestionAnswerUseCase submitQuestionAnswerUseCase(
+            AssignmentAttemptRepository assignmentAttemptRepository,
+            QuestionAnswerRepository questionAnswerRepository,
+            UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase) {
+        return new SubmitQuestionAnswerUseCase(assignmentAttemptRepository, questionAnswerRepository, updateAssignmentScoreUseCase);
     }
 
     @Bean
-    UpdateLessonsUseCase updateLessonsUseCase(CourseRepository repository) {
-        return new UpdateLessonsUseCase(repository);
+    UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase(AssignmentAttemptRepository assignmentAttemptRepository,
+                                                              QuestionAnswerRepository questionAnswerRepository) {
+        return new UpdateAssignmentScoreUseCase(assignmentAttemptRepository, questionAnswerRepository);
     }
 
     @Bean
-    DeleteLessonsUseCase deleteLessonsUseCase(CourseRepository repository){
-        return new DeleteLessonsUseCase(repository);
+    SubmitAssignmentUseCase submitAssignmentUseCase(AssignmentAttemptRepository assignmentAttemptRepository, UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase) {
+        return new SubmitAssignmentUseCase(assignmentAttemptRepository, updateAssignmentScoreUseCase);
     }
 
     @Bean
-    GetOneCourseUseCase getOneCourseUseCase(CourseRepository repository){
-        return new GetOneCourseUseCase(repository);
+    GetAssignmentInCourseUseCase getAssigmentsUseCase(AssignmentRepository assignmentRepository) {
+        return new GetAssignmentInCourseUseCase(assignmentRepository);
+    }
+    @Bean
+    GetAssignmentAttemptByIdUseCase getAssignmentAttemptByIdUseCase(AssignmentAttemptRepository assignmentAttemptRepository) {
+        return new GetAssignmentAttemptByIdUseCase(assignmentAttemptRepository);
+    }
+    @Bean
+    TeacherScoreAnswerUseCase teacherScoreAnswerUseCase(QuestionAnswerRepository repo, UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase) {
+        return new TeacherScoreAnswerUseCase(repo, updateAssignmentScoreUseCase);
+    }
+    @Bean
+    TeacherAddQuestionFeedBackUseCase teacherAddQuestionFeedBackUseCase(QuestionAnswerFeedbackRepository questionAnswerFeedbackRepository,
+                                                                        QuestionAnswerRepository questionAnswerRepository) {
+        return new TeacherAddQuestionFeedBackUseCase(questionAnswerFeedbackRepository, questionAnswerRepository);
     }
 
     @Bean
-    GetCreatedCoursesUseCase getCreatedCoursesUseCase(CourseRepository repository) {
-        return new GetCreatedCoursesUseCase(repository);
+    UpdateQuestionAnswerFeedbackDataUseCase updateQuestionAnswerFeedbackUseCase(QuestionAnswerFeedbackRepository questionAnswerFeedbackRepository) {
+        return new UpdateQuestionAnswerFeedbackDataUseCase(questionAnswerFeedbackRepository);
     }
 
     @Bean
-    GetAllCourseUseCase getAllCourseUseCase(CourseRepository repository) {
-        return new GetAllCourseUseCase(repository);
-    }
-
-    @Bean
-    UpdateCourseDetailUseCase updateCourseDetailUseCase(CourseRepository repository) {
-        return new UpdateCourseDetailUseCase(repository);
-    }
-
-    @Bean
-    DeleteCourseUseCase deleteCourseUseCase(CourseRepository repository) {
-        return new DeleteCourseUseCase(repository);
+    DeleteQuestionAnswerFeedbackUseCase deleteQuestionAnswerFeedbackUseCase(QuestionAnswerFeedbackRepository questionAnswerFeedbackRepository) {
+        return new DeleteQuestionAnswerFeedbackUseCase(questionAnswerFeedbackRepository);
     }
     @Bean
-    StudentRegisterForCourseUseCase studentRegisterForCourseUseCase(CourseRepository courseRepository,
-                                                                    CourseStudentRepository courseStudentRepository) {
-        return new StudentRegisterForCourseUseCase(courseRepository, courseStudentRepository);
-    }
-    @Bean
-    TeacherAddStudentsToCourseUseCase teacherAddStudentsToCourseUseCase(CourseRepository courseRepository,
-                                                                        CourseStudentRepository courseStudentRepository,
-                                                                        UserService userService
-    ) {
-        return new TeacherAddStudentsToCourseUseCase(courseRepository, courseStudentRepository, userService);
-    }
-
-    @Bean
-    UpdateCourseStudentStatusUseCase updateCourseStudentUseCase(CourseStudentRepository courseStudentRepository) {
-        return new UpdateCourseStudentStatusUseCase(courseStudentRepository);
-    }
-
-    @Bean
-    DeleteCourseStudentUseCase deleteCourseStudentUseCase(CourseStudentRepository courseStudentRepository) {
-        return new DeleteCourseStudentUseCase(courseStudentRepository);
-    }
-
-    @Bean
-    CourseStudentsGetAllUseCase courseStudentsGetAllUseCase(CourseRepository courseRepository, CourseStudentRepository courseStudentRepository) {
-        return new CourseStudentsGetAllUseCase(courseRepository, courseStudentRepository);
-    }
-
-    @Bean
-    StudentGetRegisteredCoursesUseCase studentGetRegisteredCoursesUseCase(CourseStudentRepository courseStudentRepository) {
-        return new StudentGetRegisteredCoursesUseCase(courseStudentRepository);
-    }
-
-    @Bean
-    StudentJoinCourseByCodeUseCase studentJoinCourseByCodeUseCase(CourseRepository courseRepository,
-                                                                  CourseStudentRepository courseStudentRepository) {
-        return new StudentJoinCourseByCodeUseCase(courseRepository, courseStudentRepository);
-    }
-    @Bean
-    CreateLessonStudyStatusUseCase createLessonStudyStatusUseCase(LessonStudentRepository lessonStudentRepository) {
-        return new CreateLessonStudyStatusUseCase(lessonStudentRepository);
-    }
-
-    @Bean
-    UpdateLessonStudyStatusUseCase updateLessonStudyStatusUseCase(LessonStudentRepository lessonStudentRepository) {
-        return new UpdateLessonStudyStatusUseCase(lessonStudentRepository);
+    TeacherFixLongAnswerUseCase teacherFixLongAnswerUseCase(QuestionAnswerRepository questionAnswerRepository) {
+        return new TeacherFixLongAnswerUseCase(questionAnswerRepository);
     }
 }

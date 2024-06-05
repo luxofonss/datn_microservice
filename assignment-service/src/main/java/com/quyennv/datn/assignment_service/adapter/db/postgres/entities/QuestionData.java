@@ -1,9 +1,13 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.Question;
-import com.quyennv.lms.core.domain.enums.QuestionLevel;
-import com.quyennv.lms.core.domain.enums.QuestionType;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Question;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionLevel;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionType;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Question;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionLevel;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -37,15 +41,16 @@ public class QuestionData extends BaseEntity{
     private List<QuestionChoiceData> choices;
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<QuestionTextAnswerData> textAnswers;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="subject_id")
-    private SubjectData subject;
+
+    @Column(name="subject_id")
+    private UUID subjectId;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="assignment_id")
     private AssignmentData assignment;
-    @ManyToOne
-    @JoinColumn(name="creator_id", nullable = false)
-    private UserData creator;
+
+    @Column(name="creatror_id")
+    private UUID creatorId;
 
     @ManyToOne
     @JoinColumn(name="question_id")
@@ -70,7 +75,8 @@ public class QuestionData extends BaseEntity{
                 .mark(q.getMark())
                 .type(q.getType())
                 .answerExplanation(q.getAnswerExplanation())
-                .creator(Objects.nonNull(q.getCreator()) ? UserData.from(q.getCreator()) : null)
+                .creatorId(Objects.nonNull(q.getCreatorId()) ? q.getCreatorId().getId() : null)
+                .subjectId(Objects.nonNull(q.getSubjectId()) ? q.getSubjectId().getId() : null)
                 .build();
 
         if (Objects.nonNull(q.getId())) {
@@ -90,10 +96,6 @@ public class QuestionData extends BaseEntity{
                     }
             ).toList();
             result.setChoices(choices);
-        }
-
-        if (Objects.nonNull(q.getSubject())) {
-            result.setSubject(SubjectData.from(q.getSubject()));
         }
 
         if (Objects.nonNull(q.getTextAnswers())) {
@@ -136,7 +138,8 @@ public class QuestionData extends BaseEntity{
                 .mark(this.mark)
                 .type(this.type)
                 .answerExplanation(this.answerExplanation)
-                .creator(this.creator.fromThis())
+                .creatorId(Identity.from(this.creatorId))
+                .subjectId(Identity.from(this.subjectId))
                 .createdAt(this.getCreatedAt())
                 .updatedAt(this.getUpdatedAt())
                 .deletedAt(this.getDeletedAt())
@@ -144,10 +147,6 @@ public class QuestionData extends BaseEntity{
 
         if (Objects.nonNull(this.choices)) {
             result.setChoices(this.choices.stream().map(QuestionChoiceData::fromThis).toList());
-        }
-
-        if (Objects.nonNull(this.subject)) {
-            result.setSubject(this.subject.fromThis());
         }
 
         if (Objects.nonNull(this.textAnswers)) {

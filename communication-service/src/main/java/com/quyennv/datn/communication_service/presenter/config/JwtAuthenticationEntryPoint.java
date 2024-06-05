@@ -1,7 +1,7 @@
 package com.quyennv.datn.communication_service.presenter.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.quyennv.datn.assignment_service.presenter.dto.ApiResponse;
+import com.quyennv.datn.communication_service.presenter.dto.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;

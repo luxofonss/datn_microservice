@@ -1,20 +1,19 @@
-package com.quyennv.lms.presenter.rest.api.conversation;
+package com.quyennv.datn.communication_service.presenter.rest.conversation;
 
-import com.quyennv.lms.presenter.rest.dto.ApiResponse;
-import com.quyennv.lms.presenter.rest.dto.CreateConversationRequest;
-import com.quyennv.lms.presenter.rest.dto.UpdateConversationRequest;
-import com.quyennv.lms.presenter.usecases.security.CurrentUser;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.communication_service.presenter.dto.ApiResponse;
+import com.quyennv.datn.communication_service.presenter.dto.conversation.CreateConversationRequest;
+import com.quyennv.datn.communication_service.presenter.dto.conversation.UpdateConversationRequest;
+import com.quyennv.datn.communication_service.presenter.usecases.security.CurrentUser;
+import com.quyennv.datn.communication_service.presenter.usecases.security.UserPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/api/v1/conversations")
+@RequestMapping("/conversations")
 public interface ConversationResource {
     @PostMapping
     CompletableFuture<ApiResponse> createConversation(

@@ -1,7 +1,7 @@
-package com.quyennv.lms.adapter.jpa.entities;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.entities;
 
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity(name="assignment_attempts")
 @Getter
@@ -33,11 +34,11 @@ public class AssignmentAttemptData extends BaseEntity{
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "assignmentAttempt")
     private List<QuestionAnswerData> answers;
     @ManyToOne
-    @JoinColumn(name="assignment__id")
+    @JoinColumn(name="assignment_id")
     private AssignmentData assignment;
-    @ManyToOne
-    @JoinColumn(name="student_id")
-    private UserData student;
+
+    @Column(name="student_id")
+    private UUID studentId;
 
     public static AssignmentAttemptData from(AssignmentAttempt aa) {
         AssignmentAttemptData result = AssignmentAttemptData.builder()
@@ -45,9 +46,9 @@ public class AssignmentAttemptData extends BaseEntity{
                 .endTime(aa.getEndTime())
                 .teacherComment(aa.getTeacherComment())
                 .totalMark(aa.getTotalMark())
-                .assignment(Objects.nonNull(aa.getAssignment()) ?  AssignmentData.from(aa.getAssignment()) : null)
-                .student(aa.getStudent() != null ? UserData.from(aa.getStudent()) : null)
+                .studentId(Objects.nonNull(aa.getStudentId()) ? aa.getStudentId().getUUID() : null)
                 .submittedAt(aa.getSubmittedAt())
+                .assignment(Objects.nonNull(aa.getAssignment()) ?  AssignmentData.from(aa.getAssignment()) : null)
                 .build();
 
         if (Objects.nonNull(aa.getAnswers())) {
@@ -68,8 +69,8 @@ public class AssignmentAttemptData extends BaseEntity{
     public AssignmentAttempt fromThis() {
         return AssignmentAttempt.builder()
                 .id(Identity.from(this.getId()))
-                .student(this.student.fromThis())
-                .assignment(this.assignment.fromThis())
+                .studentId(Identity.from(this.studentId))
+                .assignment(Objects.nonNull(assignment) ? this.assignment.fromThis() : null)
                 .answers(Objects.nonNull(this.answers) ? this.answers.stream().map(QuestionAnswerData::fromThis).toList() : null)
                 .startTime(this.getStartTime())
                 .endTime(this.getEndTime())
@@ -84,7 +85,7 @@ public class AssignmentAttemptData extends BaseEntity{
     public AssignmentAttempt fromResult() {
         return AssignmentAttempt.builder()
                 .id(Identity.from(this.getId()))
-                .student(this.student.fromThis())
+                .studentId(Identity.from(this.studentId))
                 .startTime(this.getStartTime())
                 .endTime(this.getEndTime())
                 .totalMark(this.getTotalMark())

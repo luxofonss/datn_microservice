@@ -1,7 +1,7 @@
 package com.quyennv.datn.assignment_service.presenter.usecases;
 
-import com.quyennv.datn.courseservice.core.usecases.UseCase;
-import com.quyennv.datn.courseservice.core.usecases.UseCaseExecutor;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.usecases.UseCaseExecutor;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;

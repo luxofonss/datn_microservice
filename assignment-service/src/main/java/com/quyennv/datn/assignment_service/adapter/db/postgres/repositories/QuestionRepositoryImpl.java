@@ -1,9 +1,9 @@
-package com.quyennv.lms.adapter.jpa.repositories;
+package com.quyennv.datn.assignment_service.adapter.db.postgres.repositories;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.Question;
-import com.quyennv.lms.core.usecases.question.QuestionRepository;
-import com.quyennv.lms.adapter.jpa.entities.QuestionData;
+import com.quyennv.datn.assignment_service.adapter.db.postgres.entities.QuestionData;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.entities.Question;
+import com.quyennv.datn.assignment_service.core.repositories.QuestionRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

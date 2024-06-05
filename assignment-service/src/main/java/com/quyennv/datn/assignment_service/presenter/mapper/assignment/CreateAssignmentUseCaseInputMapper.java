@@ -1,12 +1,12 @@
-package com.quyennv.lms.presenter.rest.mapper.assignment;
+package com.quyennv.datn.assignment_service.presenter.mapper.assignment;
 
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.enums.*;
-import com.quyennv.lms.core.usecases.assignment.CreateAssignmentUseCase;
-import com.quyennv.lms.presenter.rest.dto.assignment.CreateAssignmentRequest;
-import com.quyennv.lms.presenter.rest.dto.assignment.AssignmentQuestionsMutationRequest;
-import com.quyennv.lms.presenter.usecases.security.UserPrincipal;
-import com.quyennv.lms.presenter.utils.DateHelper;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.domain.enums.*;
+import com.quyennv.datn.assignment_service.core.usecases.assignment.CreateAssignmentUseCase;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.AssignmentQuestionsMutationRequest;
+import com.quyennv.datn.assignment_service.presenter.dto.assignment.CreateAssignmentRequest;
+import com.quyennv.datn.assignment_service.presenter.usecases.security.UserPrincipal;
+import com.quyennv.datn.assignment_service.presenter.utils.DateHelper;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 

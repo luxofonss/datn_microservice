@@ -1,8 +1,8 @@
-package com.quyennv.lms.core.domain.entities;
+package com.quyennv.datn.assignment_service.core.domain.entities;
 
-import com.quyennv.lms.core.domain.enums.QuestionLevel;
-import com.quyennv.lms.core.domain.enums.QuestionType;
-import com.quyennv.lms.core.utils.FunctionHelper;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionLevel;
+import com.quyennv.datn.assignment_service.core.domain.enums.QuestionType;
+import com.quyennv.datn.assignment_service.core.utils.FunctionHelper;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
@@ -29,8 +29,8 @@ public class Question {
     private List<QuestionTextAnswer> textAnswers;
     private QuestionAnswer answer;
     private Assignment assignment;
-    private User creator;
-    private Subject subject;
+    private Identity creatorId;
+    private Identity subjectId;
     private Question question;
     private List<Question> subQuestions;
 

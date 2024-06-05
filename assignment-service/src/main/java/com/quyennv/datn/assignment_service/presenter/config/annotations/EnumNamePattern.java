@@ -1,6 +1,6 @@
 package com.quyennv.datn.assignment_service.presenter.config.annotations;
 
-import com.quyennv.datn.courseservice.presenter.config.annotations.EnumNamePatternValidator;
+import com.quyennv.datn.assignment_service.presenter.config.annotations.EnumNamePatternValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

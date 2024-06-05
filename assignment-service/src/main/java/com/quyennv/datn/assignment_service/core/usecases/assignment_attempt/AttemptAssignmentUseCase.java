@@ -1,10 +1,11 @@
-package com.quyennv.lms.core.usecases.assignment;
+package com.quyennv.datn.assignment_service.core.usecases.assignment_attempt;
 
-import com.quyennv.lms.core.domain.entities.Assignment;
-import com.quyennv.lms.core.domain.entities.AssignmentAttempt;
-import com.quyennv.lms.core.domain.entities.Identity;
-import com.quyennv.lms.core.domain.entities.User;
-import com.quyennv.lms.core.usecases.UseCase;
+import com.quyennv.datn.assignment_service.core.domain.entities.Assignment;
+import com.quyennv.datn.assignment_service.core.domain.entities.AssignmentAttempt;
+import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentAttemptRepository;
+import com.quyennv.datn.assignment_service.core.repositories.AssignmentRepository;
+import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
 
@@ -30,7 +31,7 @@ public class AttemptAssignmentUseCase extends UseCase<
             throw new RuntimeException("Permission denied");
         }
 
-        List<AssignmentAttempt> prevAttempts = assignment.getAttempts().stream().filter(a -> a.getStudent().getId().equals(input.getStudentId())).toList();
+        List<AssignmentAttempt> prevAttempts = assignment.getAttempts().stream().filter(a -> a.getStudentId().equals(input.getStudentId())).toList();
 
         if (prevAttempts.size() >= assignment.getMaxAttemptTimes()) {
             throw new RuntimeException("Max attempt times reached");
@@ -38,7 +39,7 @@ public class AttemptAssignmentUseCase extends UseCase<
 
         AssignmentAttempt attempt = AssignmentAttempt.builder()
                 .assignment(assignment)
-                .student(User.builder().id(input.getStudentId()).build())
+                .studentId(input.getStudentId())
                 .startTime(LocalDateTime.now())
                 .endTime(LocalDateTime.now().plusMinutes(assignment.getDuration()))
                 .build();
