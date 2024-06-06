@@ -1,7 +1,9 @@
 package com.quyennv.datn.courseservice.adapter.db.postgres.repositories;
 
+import com.quyennv.datn.courseservice.adapter.db.postgres.entities.CourseData;
 import com.quyennv.datn.courseservice.adapter.db.postgres.entities.CourseStudentData;
 import com.quyennv.datn.courseservice.adapter.db.postgres.entities.CourseStudentDataKey;
+import com.quyennv.datn.courseservice.adapter.db.postgres.entities.UserData;
 import com.quyennv.datn.courseservice.core.domain.entities.CourseStudent;
 import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.repositories.CourseStudentRepository;
@@ -32,9 +34,10 @@ public class CourseStudentRepositoryImpl implements CourseStudentRepository {
     @Override
     @Transactional
     public CourseStudent persist(CourseStudent courseStudent) {
+        log.info("courseStudent:: {}", courseStudent);
         CourseStudentData courseStudentData = CourseStudentData.from(courseStudent);
-        courseStudentData.setCourseId(courseStudent.getCourse().getId().getUUID());
-        courseStudentData.setStudentId(courseStudent.getStudentId().getUUID());
+        courseStudentData.setCourse(CourseData.newWithId(courseStudent.getCourse().getId()));
+        courseStudentData.setStudent(UserData.newWithId(courseStudent.getStudentId()));
         return jpaCourseStudentRepository.save(courseStudentData).fromThis();
     }
 
@@ -55,7 +58,7 @@ public class CourseStudentRepositoryImpl implements CourseStudentRepository {
         CriteriaQuery<CourseStudentData> cq = builder.createQuery(CourseStudentData.class);
         Root<CourseStudentData> root = cq.from(CourseStudentData.class);
 
-        cq.where(builder.equal(root.get("studentId"), studentId.getId()));
+        cq.where(builder.equal(root.get("student").get("id"), studentId.getId()));
         return em.createQuery(cq).getResultList().stream().map(CourseStudentData::fromThis).toList();
     }
 }

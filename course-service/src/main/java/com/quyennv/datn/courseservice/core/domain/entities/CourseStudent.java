@@ -1,7 +1,6 @@
 package com.quyennv.datn.courseservice.core.domain.entities;
 
 import com.quyennv.datn.courseservice.core.domain.enums.EnrollStatus;
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +15,7 @@ import java.time.LocalDateTime;
 public class CourseStudent {
     private Course course;
     private Identity studentId;
+    private User student;
     private Integer price;
     private EnrollStatus status;
 

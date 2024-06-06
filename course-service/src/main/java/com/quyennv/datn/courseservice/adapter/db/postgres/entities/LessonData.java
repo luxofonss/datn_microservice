@@ -2,10 +2,13 @@ package com.quyennv.datn.courseservice.adapter.db.postgres.entities;
 
 import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.domain.entities.Lesson;
+import com.quyennv.datn.courseservice.core.domain.entities.Section;
 import com.quyennv.datn.courseservice.core.domain.enums.LessonType;
+import com.quyennv.datn.courseservice.core.domain.valueobject.Assignment;
 import com.quyennv.datn.courseservice.core.domain.valueobject.Resource;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Slf4j
 public class LessonData extends BaseEntity {
     private String name;
     private String description;
@@ -29,6 +33,9 @@ public class LessonData extends BaseEntity {
 
     @Column(name="resource_id")
     private UUID resourceId;
+
+    @Column(name="assignment_id")
+    private UUID assignmentId;
 
     @ManyToOne
     @JoinColumn(name="section_id", nullable = false)
@@ -44,6 +51,9 @@ public class LessonData extends BaseEntity {
                 .name(l.getName())
                 .description(l.getDescription())
                 .order(l.getOrder())
+                .assignmentId(Objects.nonNull(l.getAssignment())
+                        ? l.getAssignment().getId().getId()
+                        : null)
                 .resourceId(Objects.nonNull(l.getResource())
                         ? l.getResource().getId().getId()
                         : null)
@@ -79,6 +89,9 @@ public class LessonData extends BaseEntity {
                 .resource(Objects.nonNull(this.resourceId)
                         ? Resource.builder().id(Identity.from(this.resourceId)).build()
                         : null)
+                .assignment(Objects.nonNull(this.assignmentId)
+                        ? Assignment.builder().id(Identity.from(this.assignmentId)).build()
+                        : null)
                 .createdAt(this.getCreatedAt())
                 .updatedAt(this.getUpdatedAt())
                 .deletedAt(this.getDeletedAt())
@@ -90,6 +103,10 @@ public class LessonData extends BaseEntity {
 
         if (Objects.nonNull(this.getLessonStudents())) {
             result.setLessonStudents(this.lessonStudents.stream().map(LessonStudentData::fromThis).toList());
+        }
+
+        if (Objects.nonNull(this.getSection())) {
+            result.setSection(Section.builder().id(Identity.from(this.getSection().getId())).build());
         }
 
         return result;

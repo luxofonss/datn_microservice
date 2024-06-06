@@ -36,4 +36,11 @@ public interface ConversationResource {
             @CurrentUser UserPrincipal requester,
             HttpServletRequest servletRequest
     );
+
+    @GetMapping
+    CompletableFuture<ApiResponse> getConversationsByParentId(
+            @RequestParam @NotBlank String parentId,
+            @CurrentUser UserPrincipal requester,
+            HttpServletRequest servletRequest
+    );
 }

@@ -48,6 +48,9 @@ public class AssignmentData extends BaseEntity{
     @Column(name="lesson_id")
     private UUID lessonId;
 
+    @Column(name="course_id")
+    private UUID courseId;
+
     @OneToMany(mappedBy = "assignment", fetch = FetchType.EAGER)
     private List<AssignmentAttemptData> attempts;
 
@@ -64,6 +67,7 @@ public class AssignmentData extends BaseEntity{
                 .assignmentType(assignment.getAssignmentType())
                 .maxAttemptTimes(assignment.getMaxAttemptTimes())
                 .lessonId(Objects.nonNull(assignment.getLessonId()) ? assignment.getLessonId().getUUID() : null)
+                .courseId(Objects.nonNull(assignment.getCourseId()) ? assignment.getCourseId().getUUID() : null)
                 .attempts(
                         Objects.nonNull(assignment.getAttempts())
                                 ? assignment.getAttempts().stream().map(AssignmentAttemptData::from).toList()
@@ -109,6 +113,7 @@ public class AssignmentData extends BaseEntity{
                 .startTime(startTime)
                 .endTime(endTime)
                 .lessonId(Objects.nonNull(lessonId) ? Identity.from(lessonId) : null)
+                .courseId(Objects.nonNull(courseId) ? Identity.from(courseId) : null)
                 .assignmentType(assignmentType)
                 .maxAttemptTimes(maxAttemptTimes)
                 .attempts(Objects.nonNull(attempts)

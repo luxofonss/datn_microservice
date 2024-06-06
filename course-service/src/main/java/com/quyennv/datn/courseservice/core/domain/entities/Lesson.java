@@ -32,4 +32,8 @@ public class Lesson {
     public void delete() {
         this.setDeletedAt(LocalDateTime.now());
     }
+
+    public void updateAssignment(Identity assignmentId) {
+        this.assignment = Assignment.builder().id(assignmentId).build();
+    }
 }

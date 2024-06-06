@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class LearnerInfo {
     private Identity id;
     private Identity userId;
+    private User user;
     private LearnerType type;
     private Integer grade;
     private String school;

@@ -4,10 +4,7 @@ import com.quyennv.datn.communication_service.core.usecases.comment.CommentRepos
 import com.quyennv.datn.communication_service.core.usecases.comment.CreateCommentUseCase;
 import com.quyennv.datn.communication_service.core.usecases.comment.DeleteCommentUseCase;
 import com.quyennv.datn.communication_service.core.usecases.comment.UpdateCommentInfoUseCase;
-import com.quyennv.datn.communication_service.core.usecases.conversation.ConversationRepository;
-import com.quyennv.datn.communication_service.core.usecases.conversation.CreateConversationUseCase;
-import com.quyennv.datn.communication_service.core.usecases.conversation.DeleteConversationUseCase;
-import com.quyennv.datn.communication_service.core.usecases.conversation.UpdateConversationInfoUseCase;
+import com.quyennv.datn.communication_service.core.usecases.conversation.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,5 +38,10 @@ public class Module {
     @Bean
     DeleteCommentUseCase deleteCommentUseCase(CommentRepository commentRepository) {
         return new DeleteCommentUseCase(commentRepository);
+    }
+
+    @Bean
+    GetConversationsByParentUseCase getConversationsByParentUseCase(ConversationRepository conversationRepository) {
+        return new GetConversationsByParentUseCase(conversationRepository);
     }
 }

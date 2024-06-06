@@ -1,9 +1,9 @@
 package com.quyennv.datn.courseservice.core.domain.entities;
 
+import com.quyennv.datn.courseservice.adapter.db.postgres.entities.CourseData;
 import com.quyennv.datn.courseservice.core.domain.enums.CourseLevel;
 import com.quyennv.datn.courseservice.core.domain.enums.CourseStatus;
 import com.quyennv.datn.courseservice.core.domain.valueobject.Conversation;
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
 import com.quyennv.datn.courseservice.core.utils.FunctionHelper;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

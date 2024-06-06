@@ -3,7 +3,6 @@ package com.quyennv.datn.communication_service.adapter.db.postgres.entities;
 import com.quyennv.datn.communication_service.core.domain.entities.Conversation;
 import com.quyennv.datn.communication_service.core.domain.entities.Identity;
 import com.quyennv.datn.communication_service.core.domain.enums.ConversationType;
-import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +18,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-@ToString
+@ToString(exclude = {"comments"})
 @Slf4j
 public class ConversationData extends BaseEntity{
     @Enumerated(EnumType.STRING)
@@ -27,8 +26,11 @@ public class ConversationData extends BaseEntity{
 
     private String content;
 
-    @Column(name="user_id")
-    UUID userId;
+//    @Column(name="user_id")
+//    UUID userId;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserData user;
 
     @Column(name="target_placement_id")
     UUID targetPlacementId;
@@ -50,7 +52,9 @@ public class ConversationData extends BaseEntity{
         if (Objects.nonNull(conversation.getId())) {
             result.setId(conversation.getId().getId());
         }
-
+        if (Objects.nonNull(conversation.getUser())) {
+            result.setUser(UserData.from(conversation.getUser()));
+        }
         result.setCreatedAt(conversation.getCreatedAt());
         result.setUpdatedAt(conversation.getUpdatedAt());
         result.setDeletedAt(conversation.getDeletedAt());
@@ -64,7 +68,6 @@ public class ConversationData extends BaseEntity{
                 .builder()
                 .type(this.getType())
                 .content(this.getContent())
-                .user(User.builder().id(Identity.from(this.userId)).build())
                 .targetPlacementId(Identity.from(this.targetPlacementId))
                 .createdAt(this.getCreatedAt())
                 .updatedAt(this.getUpdatedAt())
@@ -75,6 +78,9 @@ public class ConversationData extends BaseEntity{
             result.setId(Identity.from(this.getId()));
         }
 
+        if (Objects.nonNull(this.getUser())) {
+            result.setUser(this.getUser().fromThis());
+        }
         if (Objects.nonNull(this.getComments())) {
             result.setComments(this.comments.stream().map(CommentData::fromThis).toList());
         }

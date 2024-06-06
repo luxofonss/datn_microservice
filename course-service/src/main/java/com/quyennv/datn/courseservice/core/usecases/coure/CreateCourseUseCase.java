@@ -5,7 +5,6 @@ import com.quyennv.datn.courseservice.core.domain.enums.CourseInfoType;
 import com.quyennv.datn.courseservice.core.domain.enums.CourseLevel;
 import com.quyennv.datn.courseservice.core.domain.enums.CourseStatus;
 import com.quyennv.datn.courseservice.core.domain.valueobject.Resource;
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
 import com.quyennv.datn.courseservice.core.repositories.CourseRepository;
 import com.quyennv.datn.courseservice.core.usecases.UseCase;
 import lombok.Builder;

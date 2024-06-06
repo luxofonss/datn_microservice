@@ -39,6 +39,8 @@ services:
             POSTGRES_DB: dng
         ports:
             - 5555:5432
+        volumes:
+            - ~/docker/postgres_data:/var/lib/postgresql/data
         extra_hosts:
             - "host.docker.internal:host-gateway"
         command:

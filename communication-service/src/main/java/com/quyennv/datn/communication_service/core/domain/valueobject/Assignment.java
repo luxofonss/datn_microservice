@@ -1,6 +1,7 @@
 package com.quyennv.datn.communication_service.core.domain.valueobject;
 
 import com.quyennv.datn.communication_service.core.domain.entities.Identity;
+import com.quyennv.datn.communication_service.core.domain.entities.User;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import java.time.LocalDateTime;

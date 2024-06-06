@@ -18,12 +18,8 @@ public class CourseServiceApplication {
 	}
 
 	@Bean
-	NewTopic notification() {
-	return new NewTopic("notification", 2, (short) 1);
+	NewTopic user() {
+		return new NewTopic("users.public.users", 5, (short) 1);
 	}
 
-	@Bean
-	JsonMessageConverter converter() {
-		return new JsonMessageConverter();
-	}
 }

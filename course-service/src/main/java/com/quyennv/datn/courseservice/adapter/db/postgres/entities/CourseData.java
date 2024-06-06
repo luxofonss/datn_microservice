@@ -4,7 +4,6 @@ import com.quyennv.datn.courseservice.core.domain.entities.Course;
 import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.domain.enums.CourseLevel;
 import com.quyennv.datn.courseservice.core.domain.enums.CourseStatus;
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -49,8 +48,11 @@ public class CourseData extends BaseEntity{
     @JoinColumn(name="subject_id")
     private SubjectData subject;
 
-    @Column(name="teacher_id", nullable = false)
-    private UUID teacherId;
+//    @Column(name="teacher_id", nullable = false)
+//    private UUID teacherId;
+    @ManyToOne
+    @JoinColumn(name="teacher_id", nullable = false)
+    private UserData teacher;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
     private List<CourseStudentData> courseStudents;
@@ -71,7 +73,7 @@ public class CourseData extends BaseEntity{
                 .grade(course.getGrade())
                 .code(course.getCode())
                 .subject(Objects.nonNull(course.getSubject()) ? SubjectData.from(course.getSubject()) : null)
-                .teacherId(Objects.nonNull(course.getTeacher()) ? course.getTeacher().getId().getUUID() : null)
+                .teacher(Objects.nonNull(course.getTeacher()) ? UserData.from(course.getTeacher()) : null)
                 .build();
 
         if (Objects.nonNull(course.getId())) {
@@ -111,6 +113,12 @@ public class CourseData extends BaseEntity{
         return result;
     }
 
+    public static CourseData newWithId(Identity id) {
+        CourseData data = new CourseData();
+        data.setId(id.getId());
+        return data;
+    }
+
     public Course fromThis() {
         Course course = Course
                 .builder()
@@ -143,8 +151,12 @@ public class CourseData extends BaseEntity{
             course.setSubject(this.subject.fromThis());
         }
 
-        if (Objects.nonNull(this.teacherId)) {
-            course.setTeacher(User.builder().id(Identity.from(this.teacherId)).build());
+//        if (Objects.nonNull(this.teacherId)) {
+//            course.setTeacher(User.builder().id(Identity.from(this.teacherId)).build());
+//        }
+
+        if (Objects.nonNull(this.teacher)) {
+            course.setTeacher(this.teacher.fromThis());
         }
 
         if (Objects.nonNull(this.courseStudents)) {

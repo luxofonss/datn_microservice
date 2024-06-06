@@ -35,6 +35,7 @@ public class Assignment {
     private AssignmentType assignmentType;
     private Long maxAttemptTimes;
     private Identity lessonId;
+    private Identity courseId;
     private Identity createdBy;
 
     private List<AssignmentAttempt> attempts;

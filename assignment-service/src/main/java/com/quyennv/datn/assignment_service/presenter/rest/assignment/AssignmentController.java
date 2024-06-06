@@ -35,6 +35,7 @@ public class AssignmentController implements AssignmentResource{
     private final UpdateQuestionAnswerFeedbackDataUseCase updateQuestionAnswerFeedbackUseCase;
     private final DeleteQuestionAnswerFeedbackUseCase deleteQuestionAnswerFeedbackUseCase;
     private final TeacherFixLongAnswerUseCase teacherFixLongAnswerUseCase;
+    private final GetAssignmentsByCourseUseCase getAssignmentsByCourseUseCase;
 
     public AssignmentController(UseCaseExecutor useCaseExecutor,
                                 CreateAssignmentUseCase createAssignmentUseCase,
@@ -50,7 +51,8 @@ public class AssignmentController implements AssignmentResource{
                                 TeacherAddQuestionFeedBackUseCase teacherAddQuestionFeedBackUseCase,
                                 UpdateQuestionAnswerFeedbackDataUseCase updateQuestionAnswerFeedbackUseCase,
                                 DeleteQuestionAnswerFeedbackUseCase deleteQuestionAnswerFeedbackUseCase,
-                                TeacherFixLongAnswerUseCase teacherFixLongAnswerUseCase) {
+                                TeacherFixLongAnswerUseCase teacherFixLongAnswerUseCase,
+                                GetAssignmentsByCourseUseCase getAssignmentsByCourseUseCase) {
         this.useCaseExecutor = useCaseExecutor;
         this.createAssignmentUseCase = createAssignmentUseCase;
         this.updateAssignmentDetailUseCase = updateAssignmentDetailUseCase;
@@ -66,6 +68,7 @@ public class AssignmentController implements AssignmentResource{
         this.updateQuestionAnswerFeedbackUseCase = updateQuestionAnswerFeedbackUseCase;
         this.deleteQuestionAnswerFeedbackUseCase = deleteQuestionAnswerFeedbackUseCase;
         this.teacherFixLongAnswerUseCase = teacherFixLongAnswerUseCase;
+        this.getAssignmentsByCourseUseCase = getAssignmentsByCourseUseCase;
     }
 
     @Override
@@ -80,18 +83,18 @@ public class AssignmentController implements AssignmentResource{
         );
     }
 
-    @Override
-    public CompletableFuture<ApiResponse> getWithCondition
-            (GetAssignmentFilters filters,
-             UserPrincipal requester,
-             HttpServletRequest httpServletRequest) {
-        return useCaseExecutor.execute(
-                getAssignmentInCourseUseCase,
-                GetAssignmentsFilterMapper.map(filters, requester),
-                outputValues -> new ApiResponse(true, "ok", outputValues.getAssignments())
-
-        );
-    }
+//    @Override
+//    public CompletableFuture<ApiResponse> getWithCondition
+//            (GetAssignmentFilters filters,
+//             UserPrincipal requester,
+//             HttpServletRequest httpServletRequest) {
+//        return useCaseExecutor.execute(
+//                getAssignmentInCourseUseCase,
+//                GetAssignmentsFilterMapper.map(filters, requester),
+//                outputValues -> new ApiResponse(true, "ok", outputValues.getAssignments())
+//
+//        );
+//    }
 
     @Override
     public CompletableFuture<ApiResponse> getOne(
@@ -106,6 +109,19 @@ public class AssignmentController implements AssignmentResource{
                         .requesterId(Identity.from(requester.getId()))
                         .build(),
                 outputValues -> new ApiResponse(true, "ok", outputValues.getAssignment())
+        );
+    }
+
+    @Override
+    public CompletableFuture<ApiResponse> getByCourse(String courseId, UserPrincipal requester, HttpServletRequest httpServletRequest) {
+        return useCaseExecutor.execute(
+                getAssignmentsByCourseUseCase,
+                GetAssignmentsByCourseUseCase.InputValues
+                        .builder()
+                        .requesterId(Identity.from(requester.getId()))
+                        .courseId(Identity.fromString(courseId))
+                        .build(),
+                outputValues -> new ApiResponse(true, "ok", outputValues.getAssignments())
         );
     }
 

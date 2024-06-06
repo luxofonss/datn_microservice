@@ -22,4 +22,5 @@ public class CreateAssignmentRequest {
     @ValueOfEnum(enumClass = AssignmentType.class)
     String assignmentType;
     String lessonId;
+    String courseId;
 }

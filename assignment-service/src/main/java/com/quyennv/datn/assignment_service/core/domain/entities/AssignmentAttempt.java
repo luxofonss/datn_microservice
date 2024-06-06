@@ -1,5 +1,6 @@
 package com.quyennv.datn.assignment_service.core.domain.entities;
 
+import com.quyennv.datn.assignment_service.core.domain.valueobject.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.util.List;
 public class AssignmentAttempt {
     private Identity id;
     private Identity studentId;
+    private User student;
     private Assignment assignment;
     private List<QuestionAnswer> answers;
     private LocalDateTime startTime;

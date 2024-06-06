@@ -1,7 +1,7 @@
 package com.quyennv.datn.courseservice.core.repositories;
 
 
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
+import com.quyennv.datn.courseservice.core.domain.entities.User;
 
 import java.util.List;
 

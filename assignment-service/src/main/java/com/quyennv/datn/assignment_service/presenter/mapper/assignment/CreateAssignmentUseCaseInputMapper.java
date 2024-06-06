@@ -31,6 +31,7 @@ public class CreateAssignmentUseCaseInputMapper {
                 .assignmentType(Objects.nonNull(req.getAssignmentType()) ? AssignmentType.valueOf(req.getAssignmentType()) : AssignmentType.REGULAR)
                 .maxAttemptTimes(req.getMaxAttemptTimes())
                 .lessonId(Objects.nonNull(req.getLessonId()) ? Identity.fromString(req.getLessonId()) : null)
+                .courseId(Objects.nonNull(req.getCourseId()) ? Identity.fromString(req.getCourseId()) : null)
                 .build();
     }
 

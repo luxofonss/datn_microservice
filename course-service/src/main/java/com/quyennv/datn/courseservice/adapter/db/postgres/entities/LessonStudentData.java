@@ -2,15 +2,15 @@ package com.quyennv.datn.courseservice.adapter.db.postgres.entities;
 
 import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.domain.entities.LessonStudent;
+import com.quyennv.datn.courseservice.core.domain.entities.User;
 import com.quyennv.datn.courseservice.core.domain.enums.LessonStudentStatus;
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity(name="lesson_students")
 @Setter
@@ -19,7 +19,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"lesson"})
+@ToString(exclude = {"lesson", "student"})
+@Slf4j
 public class LessonStudentData {
     @EmbeddedId
     LessonStudentDataKey id;
@@ -28,6 +29,12 @@ public class LessonStudentData {
     @MapsId("lessonId")
     @JoinColumn(name="lesson_id")
     LessonData lesson;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("studentId")
+    @JoinColumn(name="student_id")
+    UserData student;
 
     @Enumerated(EnumType.STRING)
     private LessonStudentStatus status;
@@ -42,7 +49,7 @@ public class LessonStudentData {
     private LocalDateTime deletedAt;
 
     public static LessonStudentData from(LessonStudent ls) {
-        return LessonStudentData
+        LessonStudentData lesson = LessonStudentData
                 .builder()
                 .id(LessonStudentDataKey
                         .builder()
@@ -50,11 +57,14 @@ public class LessonStudentData {
                         .studentId(ls.getStudentId() != null ? ls.getStudentId().getId() : null)
                         .build())
                 .lesson(ls.getLesson() != null ? LessonData.from(ls.getLesson()) : null)
+                .student(ls.getStudent() != null ? UserData.from(ls.getStudent()) : null)
                 .status(ls.getStatus())
                 .createdAt(ls.getCreatedAt())
                 .updatedAt(ls.getUpdatedAt())
                 .deletedAt(ls.getDeletedAt())
                 .build();
+        log.info("LessonStudentData.from: {}", lesson);
+        return lesson;
     }
 
     public LessonStudent fromThis() {

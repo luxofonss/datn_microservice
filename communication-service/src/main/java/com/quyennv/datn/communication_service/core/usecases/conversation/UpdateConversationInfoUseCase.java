@@ -1,7 +1,6 @@
 package com.quyennv.datn.communication_service.core.usecases.conversation;
 
 import com.quyennv.datn.communication_service.core.domain.entities.*;
-import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 
 public class UpdateConversationInfoUseCase extends UpdateConversationUseCase {
 

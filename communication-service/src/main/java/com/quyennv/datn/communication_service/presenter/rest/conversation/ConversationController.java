@@ -2,10 +2,7 @@ package com.quyennv.datn.communication_service.presenter.rest.conversation;
 
 import com.quyennv.datn.communication_service.core.domain.entities.Identity;
 import com.quyennv.datn.communication_service.core.usecases.UseCaseExecutor;
-import com.quyennv.datn.communication_service.core.usecases.conversation.CreateConversationUseCase;
-import com.quyennv.datn.communication_service.core.usecases.conversation.DeleteConversationUseCase;
-import com.quyennv.datn.communication_service.core.usecases.conversation.UpdateConversationInfoUseCase;
-import com.quyennv.datn.communication_service.core.usecases.conversation.UpdateConversationUseCase;
+import com.quyennv.datn.communication_service.core.usecases.conversation.*;
 import com.quyennv.datn.communication_service.presenter.dto.ApiResponse;
 import com.quyennv.datn.communication_service.presenter.dto.conversation.CreateConversationRequest;
 import com.quyennv.datn.communication_service.presenter.dto.conversation.UpdateConversationRequest;
@@ -23,15 +20,18 @@ public class ConversationController implements ConversationResource {
     private final CreateConversationUseCase createConversationUseCase;
     private final UpdateConversationInfoUseCase updateConversationInfoUseCase;
     private final DeleteConversationUseCase deleteConversationUseCase;
+    private final GetConversationsByParentUseCase getConversationsByParentUseCase;
 
     public ConversationController(UseCaseExecutor useCaseExecutor,
                                   CreateConversationUseCase createConversationUseCase,
                                   UpdateConversationInfoUseCase updateConversationInfoUseCase,
-                                  DeleteConversationUseCase deleteConversationUseCase) {
+                                  DeleteConversationUseCase deleteConversationUseCase,
+                                  GetConversationsByParentUseCase getConversationsByParentUseCase) {
         this.useCaseExecutor = useCaseExecutor;
         this.createConversationUseCase = createConversationUseCase;
         this.updateConversationInfoUseCase = updateConversationInfoUseCase;
         this.deleteConversationUseCase = deleteConversationUseCase;
+        this.getConversationsByParentUseCase = getConversationsByParentUseCase;
     }
 
     @Override
@@ -68,6 +68,18 @@ public class ConversationController implements ConversationResource {
                 deleteConversationUseCase,
                 UpdateConversationUseCase.InputValues.builder().id(Identity.fromString(id)).build(),
                 outputValues -> new ApiResponse(true, "ok", null)
+        );
+    }
+
+    @Override
+    public CompletableFuture<ApiResponse> getConversationsByParentId(
+            String parentId,
+            UserPrincipal requester,
+            HttpServletRequest servletRequest) {
+        return useCaseExecutor.execute(
+                getConversationsByParentUseCase,
+                new GetConversationsByParentUseCase.InputValues(Identity.fromString(parentId)),
+                outputValues -> new ApiResponse(true, "ok", outputValues.getConversations())
         );
     }
 }

@@ -15,11 +15,11 @@ import (
 func main() {
 	configPostgres := database.DBConfig{
 		IdentificationName: "postgres",
-		DB:                 "datn",
+		DB:                 "files",
 		User:               "postgres",
-		Password:           "admin",
+		Password:           "postgres",
 		Host:               "localhost",
-		Port:               "5432",
+		Port:               "5555",
 		Type:               "postgres",
 		SSLMode:            "disable",
 		TimeZone:           "Asia/Ho_Chi_Minh",

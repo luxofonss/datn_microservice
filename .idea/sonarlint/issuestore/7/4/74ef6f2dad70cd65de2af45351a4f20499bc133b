@@ -1,14 +1,4 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(¹áØëûÿÿÿÿ8ºæˆÑø1
-„
-java:S1128	"bRemove this unused import 'com.quyennv.datn.courseservice.core.repositories.CourseUserRepository'.(ûÌÆÿÿÿÿÿ8ÔÏ‰Ñø1
-s
-java:S1128"VRemove this unused import 'org.springframework.web.context.request.RequestAttributes'.(¢“…°8ÔÏ‰Ñø1
-v
-java:S1128"YRemove this unused import 'org.springframework.web.context.request.RequestContextHolder'.(ºãê8ÕÏ‰Ñø1
-z
-java:S1128"]Remove this unused import 'org.springframework.web.context.request.ServletRequestAttributes'.(şĞ‘Ÿ8ÕÏ‰Ñø1
-M
-java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8ÖÏ‰Ñø1
+]	java:S125"<This block of commented-out lines of code should be removed.(¹áØëûÿÿÿÿ8ºæˆÑø1
 V
-java:S1068"4Remove this unused "courseRepository" private field.(ÔĞñ›ıÿÿÿÿ8ÆæˆÑø1
+java:S1068"4Remove this unused "courseRepository" private field.(ÔĞñ›ıÿÿÿÿ8ÆæˆÑø1

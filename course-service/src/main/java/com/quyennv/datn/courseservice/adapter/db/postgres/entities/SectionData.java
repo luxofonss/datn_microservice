@@ -26,6 +26,7 @@ public class SectionData extends BaseEntity {
     @JoinColumn(name="course_id", nullable = false)
     private CourseData course;
     @OneToMany(mappedBy = "section", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OrderBy("createdAt DESC")
     private List<LessonData> lessons;
 
     public static SectionData from(Section s) {

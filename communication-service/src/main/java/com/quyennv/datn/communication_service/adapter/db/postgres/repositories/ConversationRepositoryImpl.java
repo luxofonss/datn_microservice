@@ -7,6 +7,7 @@ import com.quyennv.datn.communication_service.core.usecases.conversation.Convers
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,5 +28,13 @@ public class ConversationRepositoryImpl implements ConversationRepository {
     @Transactional(readOnly = true)
     public Optional<Conversation> findById(Identity id) {
         return jpaConversationRepository.findById(id.getId()).map(ConversationData::fromThis);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Conversation> findByParentId(Identity parentId) {
+        return jpaConversationRepository.findByTargetPlacementId(parentId.getId()).stream()
+                .map(ConversationData::fromThis)
+                .toList();
     }
 }

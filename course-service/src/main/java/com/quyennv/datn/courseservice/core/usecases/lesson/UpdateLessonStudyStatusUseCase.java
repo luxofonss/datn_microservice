@@ -1,6 +1,6 @@
 package com.quyennv.datn.courseservice.core.usecases.lesson;
 
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
+import com.quyennv.datn.courseservice.core.domain.entities.User;
 import com.quyennv.datn.courseservice.core.repositories.LessonStudentRepository;
 import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.domain.entities.Lesson;

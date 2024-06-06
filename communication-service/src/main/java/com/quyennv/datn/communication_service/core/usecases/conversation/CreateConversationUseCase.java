@@ -2,7 +2,6 @@ package com.quyennv.datn.communication_service.core.usecases.conversation;
 
 import com.quyennv.datn.communication_service.core.domain.entities.*;
 import com.quyennv.datn.communication_service.core.domain.enums.ConversationType;
-import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 import com.quyennv.datn.communication_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;

@@ -22,12 +22,12 @@ public interface AssignmentResource {
             HttpServletRequest httpServletRequest
     );
 
-    @GetMapping
-    CompletableFuture<ApiResponse> getWithCondition(
-            @Valid @ModelAttribute GetAssignmentFilters filters,
-            @CurrentUser UserPrincipal requester,
-            HttpServletRequest httpServletRequest
-    );
+//    @GetMapping
+//    CompletableFuture<ApiResponse> getWithCondition(
+//            @Valid @ModelAttribute GetAssignmentFilters filters,
+//            @CurrentUser UserPrincipal requester,
+//            HttpServletRequest httpServletRequest
+//    );
     @GetMapping("/{id}")
     CompletableFuture<ApiResponse> getOne(
             @PathVariable @NotNull String id,
@@ -35,6 +35,12 @@ public interface AssignmentResource {
             HttpServletRequest httpServletRequest
     );
 
+    @GetMapping
+    CompletableFuture<ApiResponse> getByCourse(
+            @RequestParam @NotBlank String courseId,
+            @CurrentUser UserPrincipal requester,
+            HttpServletRequest httpServletRequest
+    );
 
     @PutMapping("/{id}")
     CompletableFuture<ApiResponse> update(

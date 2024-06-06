@@ -1,0 +1,27 @@
+curl --location 'http://localhost:8083/connectors/' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "users",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.history.kafka.bootstrap.servers": "kafka:9092",
+        "database.history.kafka.topic": "schema-changes.movies",
+        "database.hostname": "db",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "users",
+        "database.server.name": "db",
+        "tombstones.on.delete": "false",
+        "topic.prefix":"users",
+        "table.include.list": "public.users",
+        "slot.name": "user_slot",
+        "heartbeat.interval.ms": "1000",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable": "false",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "false",
+        "plugin.name": "pgoutput"
+    }
+}'

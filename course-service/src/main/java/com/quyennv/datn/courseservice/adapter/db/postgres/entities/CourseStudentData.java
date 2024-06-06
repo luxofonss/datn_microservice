@@ -3,7 +3,6 @@ package com.quyennv.datn.courseservice.adapter.db.postgres.entities;
 import com.quyennv.datn.courseservice.core.domain.entities.CourseStudent;
 import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.domain.enums.EnrollStatus;
-import com.quyennv.datn.courseservice.core.domain.valueobject.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,22 +18,20 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"course"})
-@IdClass(CourseStudentDataKey.class)
+@ToString(exclude = {"course", "student"})
 public class CourseStudentData {
-    @Id
-    @Column(name="student_id")
-    private UUID studentId;
-
-    @Id
-    @Column(name="course_id")
-    private UUID courseId;
-
+    @EmbeddedId
+    CourseStudentDataKey id;
 
     @ManyToOne
     @MapsId("courseId")
     @JoinColumn(name="course_id")
     CourseData course;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("studentId")
+    @JoinColumn(name="student_id")
+    UserData student;
+
     @Enumerated(EnumType.STRING)
     private EnrollStatus status;
     private Integer price;
@@ -51,8 +48,14 @@ public class CourseStudentData {
     public static CourseStudentData from(CourseStudent cs) {
         return CourseStudentData
                 .builder()
-                .courseId(cs.getCourse().getId().getUUID())
-                .studentId(cs.getStudentId().getUUID())
+                .id(CourseStudentDataKey
+                        .builder()
+                        .courseId(cs.getCourse().getId().getId())
+                        .studentId(cs.getStudent().getId().getId())
+                        .build())
+                .course(CourseData.newWithId(cs.getCourse().getId()))
+//                .studentId(cs.getStudentId().getUUID())
+                .student(UserData.from(cs.getStudent()))
                 .course(CourseData.from(cs.getCourse()))
                 .price(cs.getPrice())
                 .status(cs.getStatus())
@@ -69,7 +72,8 @@ public class CourseStudentData {
 
         return CourseStudent
                 .builder()
-                .studentId(this.getStudentId() != null ? Identity.from(this.getStudentId()) : null)
+//                .studentId(this.getStudentId() != null ? Identity.from(this.getStudentId()) : null)
+                .student(this.student.fromThis())
                 .course(this.course != null ? this.course.getInfo() : null)
                 .price(this.price)
                 .status(this.status)

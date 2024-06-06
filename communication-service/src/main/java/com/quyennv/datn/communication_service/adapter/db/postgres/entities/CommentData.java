@@ -2,7 +2,6 @@ package com.quyennv.datn.communication_service.adapter.db.postgres.entities;
 
 import com.quyennv.datn.communication_service.core.domain.entities.Comment;
 import com.quyennv.datn.communication_service.core.domain.entities.Identity;
-import com.quyennv.datn.communication_service.core.domain.valueobject.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,8 +22,12 @@ import java.util.UUID;
 public class CommentData extends BaseEntity {
     String content;
 
-    @Column(name="user_id")
-    UUID userId;
+//    @Column(name="user_id")
+//    UUID userId;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    UserData user;
 
     @ManyToOne
     @JoinColumn(name="conversation_id")
@@ -34,13 +37,15 @@ public class CommentData extends BaseEntity {
         CommentData result = CommentData
                 .builder()
                 .content(comment.getContent())
-                .userId(comment.getUser().getId().getUUID())
+//                .userId(comment.getUser().getId().getUUID())
                 .build();
 
         if (Objects.nonNull(comment.getId())) {
             result.setId(comment.getId().getId());
         }
-
+        if (Objects.nonNull(comment.getUser())) {
+            result.setUser(UserData.from(comment.getUser()));
+        }
         if (Objects.nonNull(comment.getConversation())) {
             result.setConversation(ConversationData.from(comment.getConversation()));
         }
@@ -57,7 +62,8 @@ public class CommentData extends BaseEntity {
                 .builder()
                 .id(Identity.from(this.getId()))
                 .content(this.getContent())
-                .user(User.builder().id(Identity.from(this.getUserId())).build())
+//                .user(User.builder().id(Identity.from(this.getUserId())).build())
+                .user(this.getUser().fromThis())
                 .createdAt(this.getCreatedAt())
                 .updatedAt(this.getUpdatedAt())
                 .deletedAt(this.getDeletedAt())

@@ -2,6 +2,8 @@ package com.quyennv.datn.assignment_service.core.usecases.assignment;
 
 import com.quyennv.datn.assignment_service.core.domain.entities.*;
 import com.quyennv.datn.assignment_service.core.domain.enums.*;
+import com.quyennv.datn.assignment_service.core.domain.event.AssignmentCreatedEvent;
+import com.quyennv.datn.assignment_service.core.usecases.EventPublisher;
 import com.quyennv.datn.assignment_service.core.repositories.AssignmentRepository;
 import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
@@ -17,15 +19,29 @@ import java.util.concurrent.atomic.AtomicReference;
 public class CreateAssignmentUseCase extends UseCase<
         CreateAssignmentUseCase.InputValues, CreateAssignmentUseCase.OutputValues> {
     private final AssignmentRepository assignmentRepository;
+    private final EventPublisher eventPublisher;
 
-    public CreateAssignmentUseCase(AssignmentRepository assignmentRepository) {
+    public CreateAssignmentUseCase(AssignmentRepository assignmentRepository,
+                                   EventPublisher eventPublisher) {
         this.assignmentRepository = assignmentRepository;
+        this.eventPublisher = eventPublisher;
     }
 
     @Override
     public OutputValues execute(InputValues input) {
         Assignment assignment = map(input);
-        return new OutputValues(assignmentRepository.persist(assignment));
+        assignment = assignmentRepository.persist(assignment);
+        publishEvent(assignment);
+        return new OutputValues(assignment);
+    }
+
+    private void publishEvent(Assignment assignment) {
+        AssignmentCreatedEvent event = new AssignmentCreatedEvent(
+                assignment.getId().getId().toString(),
+                assignment.getLessonId().getId().toString(),
+                assignment.getTitle()
+        );
+        eventPublisher.publish(event);
     }
 
     private Assignment map(InputValues input) {
@@ -51,6 +67,7 @@ public class CreateAssignmentUseCase extends UseCase<
                 .assignmentType(input.getAssignmentType())
                 .maxAttemptTimes(input.getMaxAttemptTimes())
                 .lessonId(input.getLessonId())
+                .courseId(input.getCourseId())
                 .build();
 
         List<Question> questions = mapQuestions(input.getQuestions(), input);
@@ -119,6 +136,7 @@ public class CreateAssignmentUseCase extends UseCase<
         AssignmentType assignmentType;
         Long maxAttemptTimes;
         Identity lessonId;
+        Identity courseId;
     }
 
     @Value

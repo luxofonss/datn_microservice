@@ -29,4 +29,5 @@ public class Module {
     GetUserByConditionUseCase getUserByConditionUseCase(UserRepository userRepository) {
         return new GetUserByConditionUseCase(userRepository);
     }
+
 }

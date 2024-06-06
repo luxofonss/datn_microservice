@@ -1,7 +1,7 @@
 
-[	java:S112H"FDefine and throw a dedicated exception instead of using a generic one.(™èÈà
+[	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(™èÈà
 B
-java:S16022",Remove useless curly braces around statement(¤Ş¹ø
+java:S16023",Remove useless curly braces around statement(¤Ş¹ø
 ;
 java:S1128"Remove this duplicated import.(µ…í8şÓí÷ø1
 ;

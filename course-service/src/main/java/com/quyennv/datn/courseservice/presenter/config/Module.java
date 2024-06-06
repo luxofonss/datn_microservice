@@ -1,10 +1,7 @@
 package com.quyennv.datn.courseservice.presenter.config;
 
 import com.quyennv.datn.courseservice.adapter.services.user_services.UserService;
-import com.quyennv.datn.courseservice.core.repositories.CourseRepository;
-import com.quyennv.datn.courseservice.core.repositories.CourseStudentRepository;
-import com.quyennv.datn.courseservice.core.repositories.CourseUserRepository;
-import com.quyennv.datn.courseservice.core.repositories.LessonStudentRepository;
+import com.quyennv.datn.courseservice.core.repositories.*;
 import com.quyennv.datn.courseservice.core.usecases.coure.*;
 import com.quyennv.datn.courseservice.core.usecases.course_student.*;
 import com.quyennv.datn.courseservice.core.usecases.lesson.*;
@@ -121,5 +118,10 @@ public class Module {
     @Bean
     UpdateLessonStudyStatusUseCase updateLessonStudyStatusUseCase(LessonStudentRepository lessonStudentRepository) {
         return new UpdateLessonStudyStatusUseCase(lessonStudentRepository);
+    }
+
+    @Bean
+    UpdateLessonAssigmentUseCase updateLessonAssigmentUseCase(LessonRepository lessonRepository) {
+        return new UpdateLessonAssigmentUseCase(lessonRepository);
     }
 }

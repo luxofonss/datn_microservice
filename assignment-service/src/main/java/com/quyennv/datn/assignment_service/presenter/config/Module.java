@@ -1,7 +1,8 @@
 package com.quyennv.datn.assignment_service.presenter.config;
 
-import com.quyennv.datn.assignment_service.adapter.services.user_services.UserService;
+import com.quyennv.datn.assignment_service.adapter.event_publisher.kafka.KafkaEventPublisher;
 import com.quyennv.datn.assignment_service.core.repositories.*;
+import com.quyennv.datn.assignment_service.core.usecases.EventPublisher;
 import com.quyennv.datn.assignment_service.core.usecases.answer_feedback.*;
 import com.quyennv.datn.assignment_service.core.usecases.assignment.*;
 import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.AttemptAssignmentUseCase;
@@ -14,8 +15,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Module {
     @Bean
-    CreateAssignmentUseCase createAssignmentUseCase(AssignmentRepository assignmentRepository) {
-        return new CreateAssignmentUseCase(assignmentRepository);
+    CreateAssignmentUseCase createAssignmentUseCase(AssignmentRepository assignmentRepository,
+                                                    EventPublisher eventPublisher) {
+        return new CreateAssignmentUseCase(assignmentRepository, eventPublisher);
     }
 
     @Bean
@@ -89,5 +91,10 @@ public class Module {
     @Bean
     TeacherFixLongAnswerUseCase teacherFixLongAnswerUseCase(QuestionAnswerRepository questionAnswerRepository) {
         return new TeacherFixLongAnswerUseCase(questionAnswerRepository);
+    }
+
+    @Bean
+    GetAssignmentsByCourseUseCase getAssignmentsByCourseUseCase(AssignmentRepository assignmentRepository) {
+        return new GetAssignmentsByCourseUseCase(assignmentRepository);
     }
 }

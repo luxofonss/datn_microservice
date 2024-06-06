@@ -52,7 +52,7 @@ func ToResourceData(resource domainEntities.Resource) ResourceData {
 	}
 }
 
-func (ResourceData) TableName() string { return "file_schema.resources" }
+func (ResourceData) TableName() string { return "resources" }
 
 func (j *ResourceData) Scan(value interface{}) error {
 	bytes, ok := value.([]byte)

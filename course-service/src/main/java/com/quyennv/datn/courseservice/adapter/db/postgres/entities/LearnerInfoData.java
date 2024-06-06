@@ -21,8 +21,11 @@ public class LearnerInfoData extends BaseEntity{
     private Integer grade;
     private String school;
 
-    @Column(name = "user_id", nullable = false)
-    private UUID userId;
+//    @Column(name = "user_id", nullable = false)
+//    private UUID userId;
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserData user;
 
     public static LearnerInfoData from(LearnerInfo learner) {
         LearnerInfoData res = LearnerInfoData.builder()
@@ -42,7 +45,8 @@ public class LearnerInfoData extends BaseEntity{
     public LearnerInfo fromThis() {
         return LearnerInfo.builder()
                 .id(Identity.from(this.getId()))
-                .userId(Identity.from(this.userId))
+//                .userId(Identity.from(this.userId))
+                .userId(Identity.from(this.user.getId()))
                 .type(this.type)
                 .grade(this.grade)
                 .school(this.school)

@@ -89,7 +89,7 @@ public class CriteriaCourseRepository {
         if(Objects.nonNull(teacherIds)) {
             List<Predicate> teacherPredicates = new ArrayList<>();
             teacherIds.forEach(userId -> teacherPredicates.add(cb.equal(
-                    courseRoot.get("teacherId"), userId.getId())
+                    courseRoot.get("teacher").get("id"), userId.getId())
             ));
 
             predicates.add(cb.or(

@@ -78,17 +78,8 @@ public class CriteriaAssignmentRepository {
         }
 
         if (Objects.nonNull(courseId)) {
-            Join<Object, Object> lessonJoin = assignmentDataRoot.join("lesson");
-            Join<Object, Object> sectionJoin = lessonJoin.join("section");
-            predicates.add(cb.equal(sectionJoin.get("course").get("id"), courseId.getId()));
+            predicates.add(cb.equal(assignmentDataRoot.get("courseId"), courseId.getId()));
         }
-
-//        if (Objects.nonNull(sectionIds) && !sectionIds.isEmpty()) {
-//            Join<Object, Object> sectionJoin = assignmentDataRoot.join("section");
-//            predicates.add(sectionJoin.get("id").in(
-//                    sectionIds.stream().map(Identity::getId).toList()
-//            ));
-//        }
 
         return cb.and(predicates.toArray(new Predicate[0]));
     }
