@@ -23,8 +23,8 @@ public class UserDataConsumer {
     }
 
     @KafkaListener (
-            topics = "users.public.users",
-            groupId = "users-course-group",
+            topics = "users_course.public.users",
+            groupId = "users_course-group",
             containerFactory = "userKafkaListenerContainerFactory"
     )
     public void userDataListener(MessageCDC message) {

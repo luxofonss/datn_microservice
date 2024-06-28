@@ -4,6 +4,7 @@ import com.quyennv.datn.courseservice.core.domain.entities.Course;
 import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.repositories.CourseRepository;
 import com.quyennv.datn.courseservice.core.usecases.UseCase;
+import lombok.Builder;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,8 +23,15 @@ public class GetOneCourseUseCase extends UseCase<GetOneCourseUseCase.InputValues
                 () -> new RuntimeException("Not found")
         );
 
+        mappingCourseSection(input, course);
+
+        return new OutputValues(course);
+    }
+
+    private void mappingCourseSection(InputValues input, Course course) {
         if (course.getSections() != null
                 && !course.getSections().isEmpty()
+                && input.getRequesterId() != null
                 && !input.getRequesterId().equals(course.getTeacher().getId())) {
             course.getSections().forEach(section -> {
                 if (section.getLessons() != null && !section.getLessons().isEmpty()) {
@@ -41,11 +49,9 @@ public class GetOneCourseUseCase extends UseCase<GetOneCourseUseCase.InputValues
                 }
             });
         }
-
-        return new OutputValues(course);
     }
-
     @Value
+    @Builder
     public static class InputValues implements UseCase.InputValues {
         Identity courseId;
         Identity requesterId;

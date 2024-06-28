@@ -1,0 +1,210 @@
+version: "2"
+
+services:
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        environment:
+          ZOOKEEPER_CLIENT_PORT: 2181
+          ZOOKEEPER_TICK_TIME: 2000
+        ports:
+          - 52181:2181
+    kafka:
+        image: confluentinc/cp-kafka:latest
+        depends_on:
+          - zookeeper
+        ports:
+          - 29092:29092
+        environment:
+          KAFKA_BROKER_ID: 1
+          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+          KAFKA_ADVERTISED_LISTENERS: EXTERNAL://kafka:9092, INTERNAL://localhost:29092
+          KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL:PLAINTEXT, INTERNAL:PLAINTEXT
+          KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+    kowl:
+        image: quay.io/cloudhut/kowl:master
+        restart: always
+        environment:
+          KAFKA_BROKERS: kafka:9092
+        ports:
+          - "3500:8080"
+        depends_on:
+          - kafka
+
+    debezium:
+        image: debezium/connect
+        container_name: debezium
+        links:
+          - kafka
+        ports:
+          - "8083:8083"
+        environment:
+          - BOOTSTRAP_SERVERS=kafka:9092
+          - GROUP_ID=1
+          - CONFIG_STORAGE_TOPIC=my_connect_configs
+          - OFFSET_STORAGE_TOPIC=my_connect_offsets
+          - STATUS_STORAGE_TOPIC=my_connect_statuses
+
+    api-gateway:
+        image: quyennv0602/dant_api_gateway:0.0.1
+        env_file:
+          - .env
+        ports:
+          - 8888:8888
+
+
+    assignment-service-db:
+        image: debezium/example-postgres
+        restart: always
+        environment:
+          - POSTGRES_DB=assignments
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+        ports:
+          - "5432:5432"
+        volumes:
+          - assignment-service-db:/var/lib/postgresql/data:z
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
+        command:
+          - "postgres"
+          - "-c"
+          - "wal_level=logical"
+
+
+
+    communication-service-db:
+      image: debezium/example-postgres
+      restart: always
+      environment:
+        - POSTGRES_DB=communications
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      ports:
+        - "5433:5432"
+      volumes:
+        - communication-service-db:/var/lib/postgresql/data:z
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      command:
+        - "postgres"
+        - "-c"
+        - "wal_level=logical"
+
+
+
+    course-service-db:
+      image: debezium/example-postgres
+      restart: always
+      environment:
+        - POSTGRES_DB=courses
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      ports:
+        - "5434:5432"
+      volumes:
+        - course-service-db:/var/lib/postgresql/data:z
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      command:
+        - "postgres"
+        - "-c"
+        - "wal_level=logical"
+
+
+
+    notification-service-db:
+      image: debezium/example-postgres
+      restart: always
+      environment:
+        - POSTGRES_DB=notifications
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      ports:
+        - "5435:5432"
+      volumes:
+        - notification-service-db:/var/lib/postgresql/data:z
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      command:
+        - "postgres"
+        - "-c"
+        - "wal_level=logical"
+
+
+    user-service-db:
+      image: debezium/example-postgres
+      restart: always
+      environment:
+        - POSTGRES_DB=users
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      ports:
+        - "5436:5432"
+      volumes:
+        - user-service-db:/var/lib/postgresql/data:z
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      command:
+        - "postgres"
+        - "-c"
+        - "wal_level=logical"
+
+    assignment-service:
+        image: quyennv0602/datn_assignment_service:0.0.1
+        depends_on:
+          - assignment-service-db
+          - kafka
+        env_file:
+          - .env.assignment-service
+        ports:
+          - "8084:8084"
+
+    communication-service:
+        image: quyennv0602/datn_communication_service:0.0.1
+        depends_on:
+          - communication-service-db
+          - course-service
+          - kafka
+        env_file:
+          - .env.communication-service
+        ports:
+          - "8085:8085"
+
+    course-service:
+        image: quyennv0602/datn_course_service:0.0.1
+        depends_on:
+          - course-service-db
+          - kafka
+        env_file:
+          - .env.course-service
+        ports:
+          - "8082:8082"
+
+    notification-service:
+        image: quyennv0602/datn_notification_service:0.0.1
+        depends_on:
+          - notification-service-db
+          - kafka
+        env_file:
+          - .env.notification-service
+        ports:
+          - "8099:8099"
+
+    user-service:
+        image: quyennv0602/datn_user_service:0.0.1
+        depends_on:
+          - user-service-db
+          - kafka
+        env_file:
+          - .env.user-service
+        ports:
+          - "8088:8088"
+
+volumes:  # Define the volume here (optional)
+    assignment-service-db:
+    communication-service-db:
+    course-service-db:
+    notification-service-db:
+    user-service-db:

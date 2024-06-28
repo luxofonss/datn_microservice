@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+    APP_PORT: "8088"
+    DB_HOST: user-service-db
+    DB_NAME: users
+    DB_PASSWORD: postgres
+    DB_PORT: "5436"
+    DB_USERNAME: postgres
+    KAFKA_BOOTSTRAP_SERVERS: http://kafka:29092
+kind: ConfigMap
+metadata:
+    labels:
+        io.kompose.service: user-service-env-user-service
+    name: env-user-service

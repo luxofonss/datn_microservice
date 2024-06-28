@@ -1,18 +1,22 @@
 package com.quyennv.datn.communication_service.presenter.config;
 
+import com.quyennv.datn.communication_service.core.usecases.EventPublisher;
 import com.quyennv.datn.communication_service.core.usecases.comment.CommentRepository;
 import com.quyennv.datn.communication_service.core.usecases.comment.CreateCommentUseCase;
 import com.quyennv.datn.communication_service.core.usecases.comment.DeleteCommentUseCase;
 import com.quyennv.datn.communication_service.core.usecases.comment.UpdateCommentInfoUseCase;
 import com.quyennv.datn.communication_service.core.usecases.conversation.*;
+import com.quyennv.datn.communication_service.core.usecases.notification.ConversationCreatedNotificationUseCase;
+import com.quyennv.datn.communication_service.core.usecases.notification.CourseService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Module {
     @Bean
-    CreateConversationUseCase createConversationUseCase(ConversationRepository conversationRepository) {
-        return new CreateConversationUseCase(conversationRepository);
+    CreateConversationUseCase createConversationUseCase(ConversationRepository conversationRepository,
+                                                        ConversationCreatedNotificationUseCase conversationCreatedNotificationUseCase) {
+        return new CreateConversationUseCase(conversationRepository, conversationCreatedNotificationUseCase);
     }
 
     @Bean
@@ -43,5 +47,10 @@ public class Module {
     @Bean
     GetConversationsByParentUseCase getConversationsByParentUseCase(ConversationRepository conversationRepository) {
         return new GetConversationsByParentUseCase(conversationRepository);
+    }
+
+    @Bean
+    ConversationCreatedNotificationUseCase conversationCreatedNotificationUseCase(CourseService courseService, EventPublisher eventPublisher) {
+        return new ConversationCreatedNotificationUseCase(courseService, eventPublisher);
     }
 }

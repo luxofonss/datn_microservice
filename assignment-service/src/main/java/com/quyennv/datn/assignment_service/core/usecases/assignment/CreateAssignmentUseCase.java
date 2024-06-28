@@ -1,5 +1,6 @@
 package com.quyennv.datn.assignment_service.core.usecases.assignment;
 
+import com.quyennv.datn.assignment_service.core.constants.Constant;
 import com.quyennv.datn.assignment_service.core.domain.entities.*;
 import com.quyennv.datn.assignment_service.core.domain.enums.*;
 import com.quyennv.datn.assignment_service.core.domain.event.AssignmentCreatedEvent;
@@ -31,17 +32,9 @@ public class CreateAssignmentUseCase extends UseCase<
     public OutputValues execute(InputValues input) {
         Assignment assignment = map(input);
         assignment = assignmentRepository.persist(assignment);
-        publishEvent(assignment);
-        return new OutputValues(assignment);
-    }
 
-    private void publishEvent(Assignment assignment) {
-        AssignmentCreatedEvent event = new AssignmentCreatedEvent(
-                assignment.getId().getId().toString(),
-                assignment.getLessonId().getId().toString(),
-                assignment.getTitle()
-        );
-        eventPublisher.publish(event);
+        eventPublisher.publishAssignmentCreatedEvent(assignment);
+        return new OutputValues(assignment);
     }
 
     private Assignment map(InputValues input) {

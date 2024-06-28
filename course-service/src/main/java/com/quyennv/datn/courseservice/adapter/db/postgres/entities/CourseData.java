@@ -151,9 +151,9 @@ public class CourseData extends BaseEntity{
             course.setSubject(this.subject.fromThis());
         }
 
-//        if (Objects.nonNull(this.teacherId)) {
-//            course.setTeacher(User.builder().id(Identity.from(this.teacherId)).build());
-//        }
+        if (Objects.nonNull(this.teacher)) {
+            course.setTeacher(this.teacher.fromThis());
+        }
 
         if (Objects.nonNull(this.teacher)) {
             course.setTeacher(this.teacher.fromThis());
@@ -190,6 +190,9 @@ public class CourseData extends BaseEntity{
             course.setSubject(this.subject.fromThis());
         }
 
+        if (Objects.nonNull(this.teacher)) {
+            course.setTeacher(this.teacher.fromThis());
+        }
 
         return course;
     }

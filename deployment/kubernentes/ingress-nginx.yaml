@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: datn-ingress
+    namespace: default
+spec:
+    rules:
+        - http:
+              paths:
+                  - path: /kowl
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: kowl
+                            port:
+                                number: 8090
+                  - path: / # Example path for frontend
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: client-service
+                            port:
+                                number: 80
+                  - path: /api # Example path for frontend
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: api-gateway
+                            port:
+                                number: 8888

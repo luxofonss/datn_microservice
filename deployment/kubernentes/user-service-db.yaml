@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        service: user-service-db
+    name: user-service-db
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            service: user-service-db
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                service: user-service-db
+        spec:
+            containers:
+                - args:
+                      - postgres
+                      - -c
+                      - wal_level=logical
+                  env:
+                      - name: POSTGRES_DB
+                        value: users
+                      - name: POSTGRES_PASSWORD
+                        value: postgres
+                      - name: POSTGRES_USER
+                        value: postgres
+                  image: debezium/example-postgres
+                  name: user-service-db
+                  ports:
+                      - containerPort: 5432
+                        protocol: TCP
+                  resources:
+                      requests:
+                          memory: "256Mi"
+                          cpu: "500m"
+                      limits:
+                          memory: "512Mi"
+                          cpu: "1"
+                  volumeMounts:
+                      - mountPath: /var/lib/postgresql/users
+                        name: user-service-db
+            restartPolicy: Always
+            volumes:
+                - name: user-service-db
+                  persistentVolumeClaim:
+                      claimName: user-service-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        service: user-service-db
+    name: user-service-db
+spec:
+    ports:
+        - name: "5436"
+          port: 5436
+          targetPort: 5432
+    selector:
+        service: user-service-db
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    labels:
+        service: user-service-db
+    name: user-service-db
+spec:
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 100Mi

@@ -6,6 +6,8 @@ import com.quyennv.datn.assignment_service.core.domain.enums.AssignmentType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,12 +17,17 @@ import java.util.UUID;
 @Entity(name="assignments")
 @Getter
 @Setter
-@Table(name="assignments")
+@Table(name = "assignments",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"lesson_id", "course_id"}))
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Slf4j
-public class AssignmentData extends BaseEntity{
+public class AssignmentData{
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
     private String title;
     private String description;
     @Column(name="total_marks")
@@ -54,6 +61,14 @@ public class AssignmentData extends BaseEntity{
     @OneToMany(mappedBy = "assignment", fetch = FetchType.EAGER)
     private List<AssignmentAttemptData> attempts;
 
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
     public static AssignmentData from(Assignment assignment) {
         AssignmentData assignmentData = AssignmentData.builder()
                 .title(assignment.getTitle())

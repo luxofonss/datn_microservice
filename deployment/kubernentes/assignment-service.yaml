@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        io.kompose.service: assignment-service
+    name: assignment-service
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            io.kompose.service: assignment-service
+    template:
+        metadata:
+            labels:
+                io.kompose.service: assignment-service
+        spec:
+            containers:
+                - env:
+                      - name: APP_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                key: APP_PORT
+                                name: env-assignment-service
+                      - name: DB_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_HOST
+                                name: env-assignment-service
+                      - name: DB_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_NAME
+                                name: env-assignment-service
+                      - name: DB_PASSWORD
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_PASSWORD
+                                name: env-assignment-service
+                      - name: DB_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_PORT
+                                name: env-assignment-service
+                      - name: DB_USERNAME
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_USERNAME
+                                name: env-assignment-service
+                      - name: KAFKA_BOOTSTRAP_SERVERS
+                        valueFrom:
+                            configMapKeyRef:
+                                key: KAFKA_BOOTSTRAP_SERVERS
+                                name: env-assignment-service
+                      - name: USER_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: USER_SERVICE_URI
+                                name: env-assignment-service
+                  image: quyennv0602/datn_assignment_service:0.0.1
+                  name: assignment-service
+                  ports:
+                      - containerPort: 8084
+                        protocol: TCP
+                  resources:
+                      requests:
+                          memory: "128Mi"
+                          cpu: "256m"
+                      limits:
+                          memory: "256Mi"
+                          cpu: "512m"
+            restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        io.kompose.service: assignment-service
+    name: assignment-service
+spec:
+    ports:
+        - name: "8084"
+          port: 8084
+          targetPort: 8084
+    selector:
+        io.kompose.service: assignment-service

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="PostgreSqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://localhost:5555/notifications"
+                        userId="postgres"
+                        password="postgres">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.quyennv.datn.notification_service.entity" targetProject="F:\1CODE\datn-microservice\notification_service\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.quyennv.datn.notification_service.mapper" targetProject="F:\1CODE\datn-microservice\notification_service\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.quyennv.datn.notification_service.mapper" targetProject="F:\1CODE\datn-microservice\notification_service\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="notifications">
+        </table>
+
+    </context>
+</generatorConfiguration>

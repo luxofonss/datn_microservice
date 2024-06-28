@@ -73,6 +73,12 @@ public interface CourseResource {
             HttpServletRequest httpServletRequest
     );
 
+    @GetMapping("/internal/{id}")
+    CompletableFuture<ApiResponse> getCourseByIdInternal(
+            @PathVariable String id,
+            HttpServletRequest httpServletRequest
+    );
+
 
     @PostMapping("/{id}/sections")
     CompletableFuture<ApiResponse<?>> addSections(

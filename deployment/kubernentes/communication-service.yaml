@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        io.kompose.service: communication-service
+    name: communication-service
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            io.kompose.service: communication-service
+    template:
+        metadata:
+            labels:
+                io.kompose.service: communication-service
+        spec:
+            containers:
+                - env:
+                      - name: APP_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                key: APP_PORT
+                                name: env-communication-service
+                      - name: COURSE_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: COURSE_SERVICE_URI
+                                name: env-communication-service
+                      - name: DB_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_HOST
+                                name: env-communication-service
+                      - name: DB_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_NAME
+                                name: env-communication-service
+                      - name: DB_PASSWORD
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_PASSWORD
+                                name: env-communication-service
+                      - name: DB_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_PORT
+                                name: env-communication-service
+                      - name: DB_USERNAME
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_USERNAME
+                                name: env-communication-service
+                      - name: KAFKA_BOOTSTRAP_SERVERS
+                        valueFrom:
+                            configMapKeyRef:
+                                key: KAFKA_BOOTSTRAP_SERVERS
+                                name: env-communication-service
+                      - name: USER_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: USER_SERVICE_URI
+                                name: env-communication-service
+                  image: quyennv0602/datn_communication_service:0.0.1
+                  name: communication-service
+                  ports:
+                      - containerPort: 8085
+                        protocol: TCP
+                  resources:
+                      requests:
+                          memory: "128Mi"
+                          cpu: "256m"
+                      limits:
+                          memory: "256Mi"
+                          cpu: "512m"
+            restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        io.kompose.service: communication-service
+    name: communication-service
+spec:
+    ports:
+        - name: "8085"
+          port: 8085
+          targetPort: 8085
+    selector:
+        io.kompose.service: communication-service

@@ -1,8 +1,10 @@
 package com.quyennv.datn.assignment_service.core.usecases.answer_feedback;
 
+import com.quyennv.datn.assignment_service.core.constants.Constant;
 import com.quyennv.datn.assignment_service.core.domain.entities.Identity;
 import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswer;
 import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerRepository;
+import com.quyennv.datn.assignment_service.core.usecases.EventPublisher;
 import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import com.quyennv.datn.assignment_service.core.usecases.assignment.UpdateAssignmentScoreUseCase;
 import lombok.Builder;
@@ -11,10 +13,12 @@ import lombok.Value;
 public class TeacherScoreAnswerUseCase extends UseCase<TeacherScoreAnswerUseCase.InputValues, TeacherScoreAnswerUseCase.OutputValues> {
     private final QuestionAnswerRepository questionAnswerRepository;
     private final UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase;
+    private final EventPublisher eventPublisher;
 
-    public TeacherScoreAnswerUseCase(QuestionAnswerRepository questionAnswerRepository, UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase) {
+    public TeacherScoreAnswerUseCase(QuestionAnswerRepository questionAnswerRepository, UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase, EventPublisher eventPublisher) {
         this.questionAnswerRepository = questionAnswerRepository;
         this.updateAssignmentScoreUseCase = updateAssignmentScoreUseCase;
+        this.eventPublisher = eventPublisher;
     }
 
     @Override
@@ -28,6 +32,8 @@ public class TeacherScoreAnswerUseCase extends UseCase<TeacherScoreAnswerUseCase
         updateAssignmentScoreUseCase.execute(UpdateAssignmentScoreUseCase.InputValues.builder()
                 .attemptId(input.getAttemptId())
                 .build());
+
+//        eventPublisher.publish(updatedQuestionAnswer, Constant.NOTIFICATION_CREATED_TOPIC);
 
         return new OutputValues(updatedQuestionAnswer);
     }

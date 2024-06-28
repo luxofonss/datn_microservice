@@ -12,6 +12,7 @@
         <module name="communication_service" />
         <module name="user-service" />
         <module name="assignment_service" />
+        <module name="notification_service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -21,6 +22,7 @@
       <module name="assignment_service" options="-parameters" />
       <module name="communication_service" options="-parameters" />
       <module name="course-service" options="-parameters" />
+      <module name="notification_service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>

@@ -1,5 +1,6 @@
 package com.quyennv.datn.courseservice.presenter.config;
 
+import com.quyennv.datn.courseservice.adapter.event_consumer.kafka.cdc.user.UserRepository;
 import com.quyennv.datn.courseservice.adapter.services.user_services.UserService;
 import com.quyennv.datn.courseservice.core.repositories.*;
 import com.quyennv.datn.courseservice.core.usecases.coure.*;
@@ -107,8 +108,9 @@ public class Module {
 
     @Bean
     StudentJoinCourseByCodeUseCase studentJoinCourseByCodeUseCase(CourseRepository courseRepository,
-                                                                  CourseStudentRepository courseStudentRepository) {
-        return new StudentJoinCourseByCodeUseCase(courseRepository, courseStudentRepository);
+                                                                  CourseStudentRepository courseStudentRepository,
+                                                                  UserRepository userRepository) {
+        return new StudentJoinCourseByCodeUseCase(courseRepository, courseStudentRepository, userRepository);
     }
     @Bean
     CreateLessonStudyStatusUseCase createLessonStudyStatusUseCase(LessonStudentRepository lessonStudentRepository) {

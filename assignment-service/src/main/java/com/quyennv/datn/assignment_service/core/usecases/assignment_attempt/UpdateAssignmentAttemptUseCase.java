@@ -23,7 +23,7 @@ public abstract class UpdateAssignmentAttemptUseCase extends UseCase<
         AssignmentAttempt assignmentAttempt = assignmentAttemptRepository.findById(input.getAssignmentAttemptId())
                 .orElseThrow(() -> new RuntimeException("Assignment attempt not found"));
 
-        if (!assignmentAttempt.getStudentId().equals(input.getRequesterId())) {
+        if (!assignmentAttempt.getStudent().getId().equals(input.getRequesterId())) {
             throw new RuntimeException("You are not allowed to update this assignment attempt");
         }
 

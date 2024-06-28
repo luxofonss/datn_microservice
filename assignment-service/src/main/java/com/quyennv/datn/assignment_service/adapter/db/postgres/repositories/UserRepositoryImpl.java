@@ -2,6 +2,7 @@ package com.quyennv.datn.assignment_service.adapter.db.postgres.repositories;
 
 import com.quyennv.datn.assignment_service.adapter.db.postgres.entities.UserData;
 import com.quyennv.datn.assignment_service.adapter.event_consumer.kafka.cdc.user.UserRepository;
+import com.quyennv.datn.assignment_service.adapter.event_publisher.repository.KafkaUserRepository;
 import com.quyennv.datn.assignment_service.core.domain.entities.User;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl implements UserRepository, KafkaUserRepository {
     private final JpaUserRepository jpaUserRepository;
 
     public UserRepositoryImpl(JpaUserRepository jpaUserRepository) {

@@ -5,7 +5,11 @@ import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswerFe
 import com.quyennv.datn.assignment_service.core.domain.enums.QuestionAnswerFeedbackType;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name="question_answer_feedbacks")
@@ -15,23 +19,39 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class QuestionAnswerFeedbackData extends BaseEntity{
+@Slf4j
+public class QuestionAnswerFeedbackData{
+    @Id
+    private UUID id;
+
     private String message;
+
     @Enumerated(EnumType.STRING)
     private QuestionAnswerFeedbackType type;
-    @Column(name="creator_id")
-    private UUID creatorId;
+
+    @JoinColumn(name="creator_id")
+    @ManyToOne
+    private UserData creator;
 
     @ManyToOne
     @JoinColumn(name="question_id")
     private QuestionAnswerData answer;
+
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 
     public static QuestionAnswerFeedbackData from (QuestionAnswerFeedback f) {
         QuestionAnswerFeedbackData result = QuestionAnswerFeedbackData
                 .builder()
                 .message(f.getMessage())
                 .type(f.getType())
-                .creatorId(f.getCreatorId().getUUID())
+                .creator(UserData.builder().id(f.getCreatorId().getUUID()).build())
                 .answer(f.getAnswer() != null ? QuestionAnswerData.from(f.getAnswer().getId()) : null)
                 .build();
 
@@ -40,6 +60,8 @@ public class QuestionAnswerFeedbackData extends BaseEntity{
         result.setUpdatedAt(f.getUpdatedAt());
         result.setDeletedAt(f.getDeletedAt());
 
+        log.info("result:: {}",result.getId());
+
         return result;
     }
 
@@ -47,7 +69,8 @@ public class QuestionAnswerFeedbackData extends BaseEntity{
         return QuestionAnswerFeedback
                 .builder()
                 .id(Identity.from(this.getId()))
-                .creatorId(Identity.from(this.creatorId))
+                .creatorId(Identity.from(this.creator.getId()))
+                .creator(this.creator.fromThis())
                 .message(this.message)
                 .type(this.type)
 //                .answer(this.answer.fromThis())

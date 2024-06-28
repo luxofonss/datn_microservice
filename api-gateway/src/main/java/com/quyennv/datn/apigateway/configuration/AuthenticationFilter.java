@@ -57,21 +57,20 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
         String token = authHeader.get(0).replace("Bearer ", "");
         log.info("Token: {}", token);
-        return chain.filter(exchange);
 
         // TODO: implement commented code
-//        try {
-//            return identityService.introspect(token).flatMap(introspectResponse -> {
-//                log.info("introspectResponse:: {}", introspectResponse.toString());
-//                if (Boolean.TRUE.equals(introspectResponse.getSuccess()))
-//                    return chain.filter(exchange);
-//                else
-//                    return unauthenticated(exchange.getResponse());
-//            }).onErrorResume(throwable -> unauthenticated(exchange.getResponse()));
-//        } catch (Exception e) {
-//            log.error("Error: {}", e.getMessage());
-//            return null;
-//        }
+        try {
+            return identityService.introspect(token).flatMap(introspectResponse -> {
+                log.info("introspectResponse:: {}", introspectResponse.toString());
+                if (Boolean.TRUE.equals(introspectResponse.getSuccess()))
+                    return chain.filter(exchange);
+                else
+                    return unauthenticated(exchange.getResponse());
+            }).onErrorResume(throwable -> unauthenticated(exchange.getResponse()));
+        } catch (Exception e) {
+            log.error("Error: {}", e.getMessage());
+            return unauthenticated(exchange.getResponse());
+        }
     }
 
     @Override

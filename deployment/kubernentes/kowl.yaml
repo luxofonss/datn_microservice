@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        service: kowl
+    name: kowl
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            service: kowl
+    template:
+        metadata:
+            labels:
+                service: kowl
+        spec:
+            containers:
+                - env:
+                      - name: KAFKA_BROKERS
+                        value: kafka:9092
+                  image: quay.io/cloudhut/kowl:master
+                  name: kowl
+                  ports:
+                      - containerPort: 8080
+                        protocol: TCP
+            restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        service: kowl
+    name: kowl
+spec:
+    ports:
+        - name: "8090"
+          port: 8090
+          targetPort: 8080
+    selector:
+        service: kowl

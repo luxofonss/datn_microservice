@@ -1,5 +1,7 @@
 package com.quyennv.datn.courseservice.core.usecases.course_student;
 
+import com.quyennv.datn.courseservice.adapter.event_consumer.kafka.cdc.user.UserRepository;
+import com.quyennv.datn.courseservice.core.domain.entities.User;
 import com.quyennv.datn.courseservice.core.repositories.CourseRepository;
 import com.quyennv.datn.courseservice.core.repositories.CourseStudentRepository;
 import com.quyennv.datn.courseservice.core.domain.entities.Course;
@@ -16,10 +18,12 @@ import java.util.Objects;
 public class StudentJoinCourseByCodeUseCase extends UseCase<StudentJoinCourseByCodeUseCase.InputValues, StudentJoinCourseByCodeUseCase.OutputValues>{
     private final CourseRepository courseRepository;
     private final CourseStudentRepository courseStudentRepository;
+    private final UserRepository userRepository;
 
-    public StudentJoinCourseByCodeUseCase(CourseRepository courseRepository, CourseStudentRepository courseStudentRepository) {
+    public StudentJoinCourseByCodeUseCase(CourseRepository courseRepository, CourseStudentRepository courseStudentRepository, UserRepository userRepository) {
         this.courseRepository = courseRepository;
         this.courseStudentRepository = courseStudentRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -42,11 +46,13 @@ public class StudentJoinCourseByCodeUseCase extends UseCase<StudentJoinCourseByC
     }
 
     private CourseStudent createCourseStudent(InputValues input, Course course) {
-
+        User student = userRepository.findById(input.getRequester().getUUID()).orElseThrow(() ->
+                new RuntimeException("User not found"));
         return courseStudentRepository.persist(
                 CourseStudent
                         .builder()
                         .course(course)
+                        .student(student)
                         .studentId(input.getRequester())
                         .price(0)
                         .status(EnrollStatus.PENDING)

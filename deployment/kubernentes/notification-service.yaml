@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        io.kompose.service: notification-service
+    name: notification-service
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            io.kompose.service: notification-service
+    template:
+        metadata:
+            labels:
+                io.kompose.service: notification-service
+        spec:
+            containers:
+                - env:
+                      - name: APP_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                key: APP_PORT
+                                name: env-notification-service
+                      - name: DB_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_HOST
+                                name: env-notification-service
+                      - name: DB_NAME
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_NAME
+                                name: env-notification-service
+                      - name: DB_PASSWORD
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_PASSWORD
+                                name: env-notification-service
+                      - name: DB_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_PORT
+                                name: env-notification-service
+                      - name: DB_USERNAME
+                        valueFrom:
+                            configMapKeyRef:
+                                key: DB_USERNAME
+                                name: env-notification-service
+                      - name: KAFKA_BOOTSTRAP_SERVERS
+                        valueFrom:
+                            configMapKeyRef:
+                                key: KAFKA_BOOTSTRAP_SERVERS
+                                name: env-notification-service
+                  image: quyennv0602/datn_notification_service:0.0.1
+                  name: notification-service
+                  ports:
+                      - containerPort: 8099
+                        protocol: TCP
+                  resources:
+                      requests:
+                          memory: "128Mi"
+                          cpu: "256m"
+                      limits:
+                          memory: "256Mi"
+                          cpu: "512m"
+            restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        io.kompose.service: notification-service
+    name: notification-service
+spec:
+    ports:
+        - name: "8099"
+          port: 8099
+          targetPort: 8099
+    selector:
+        io.kompose.service: notification-service

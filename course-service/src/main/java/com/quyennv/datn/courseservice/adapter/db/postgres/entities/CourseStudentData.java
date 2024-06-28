@@ -5,6 +5,7 @@ import com.quyennv.datn.courseservice.core.domain.entities.Identity;
 import com.quyennv.datn.courseservice.core.domain.enums.EnrollStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @ToString(exclude = {"course", "student"})
+@Slf4j
 public class CourseStudentData {
     @EmbeddedId
     CourseStudentDataKey id;
@@ -46,12 +48,13 @@ public class CourseStudentData {
     private LocalDateTime deletedAt;
 
     public static CourseStudentData from(CourseStudent cs) {
+        log.info("cs:: {}", cs);
         return CourseStudentData
                 .builder()
                 .id(CourseStudentDataKey
                         .builder()
                         .courseId(cs.getCourse().getId().getId())
-                        .studentId(cs.getStudent().getId().getId())
+                        .studentId(cs.getStudent().getId().getUUID())
                         .build())
                 .course(CourseData.newWithId(cs.getCourse().getId()))
 //                .studentId(cs.getStudentId().getUUID())

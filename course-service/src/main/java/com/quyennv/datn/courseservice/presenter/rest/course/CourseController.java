@@ -184,7 +184,16 @@ public class CourseController implements CourseResource{
     public CompletableFuture<ApiResponse> getById(String id, UserPrincipal requester, HttpServletRequest httpServletRequest) {
         return useCaseExecutor.execute(
                 getOneCourseUseCase,
-                new GetOneCourseUseCase.InputValues(Identity.fromString(id), Identity.from(requester.getId())),
+                GetOneCourseUseCase.InputValues.builder().courseId(Identity.fromString(id)).requesterId(Identity.from(requester.getId())).build(),
+                outputValues -> new ApiResponse(true,"ok", outputValues.getCourse())
+        );
+    }
+
+    @Override
+    public CompletableFuture<ApiResponse> getCourseByIdInternal(String id, HttpServletRequest httpServletRequest) {
+        return useCaseExecutor.execute(
+                getOneCourseUseCase,
+                GetOneCourseUseCase.InputValues.builder().courseId(Identity.fromString(id)).build(),
                 outputValues -> new ApiResponse(true,"ok", outputValues.getCourse())
         );
     }
@@ -202,9 +211,7 @@ public class CourseController implements CourseResource{
                 outputValues -> new ApiResponse<>(true, "ok", outputValues.getCourse().getId())
         );
     }
-//course: b457825d-bcfb-465a-9233-ab38833d7aae
-//    section: 4d2a4efc-79b4-4ce7-9d3c-0c4fd744252d
-//        lesson:5c6347c9-3980-4e45-8bed-7cb6707ad716 lesson1
+
     @Override
     public CompletableFuture<ApiResponse> updateSections(
             UpdateCourseRequest req,

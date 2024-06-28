@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        io.kompose.service: assignment-service-db
+    name: assignment-service-db
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            io.kompose.service: assignment-service-db
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                io.kompose.service: assignment-service-db
+        spec:
+            containers:
+                - args:
+                      - postgres
+                      - -c
+                      - wal_level=logical
+                  env:
+                      - name: POSTGRES_DB
+                        value: assignments
+                      - name: POSTGRES_PASSWORD
+                        value: postgres
+                      - name: POSTGRES_USER
+                        value: postgres
+                  image: debezium/example-postgres
+                  name: assignment-service-db
+                  ports:
+                      - containerPort: 5432
+                        protocol: TCP
+                  resources:
+                      requests:
+                          memory: "256Mi"
+                          cpu: "500m"
+                      limits:
+                          memory: "512Mi"
+                          cpu: "1"
+                  volumeMounts:
+                      - mountPath: /var/lib/postgresql/assignments
+                        name: assignment-service-db
+            restartPolicy: Always
+            volumes:
+                - name: assignment-service-db
+                  persistentVolumeClaim:
+                      claimName: assignment-service-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        io.kompose.service: assignment-service-db
+    name: assignment-service-db
+spec:
+    ports:
+        - name: "5432"
+          port: 5432
+          targetPort: 5432
+    selector:
+        io.kompose.service: assignment-service-db
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    labels:
+        io.kompose.service: assignment-service-db
+    name: assignment-service-db
+spec:
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 100Mi

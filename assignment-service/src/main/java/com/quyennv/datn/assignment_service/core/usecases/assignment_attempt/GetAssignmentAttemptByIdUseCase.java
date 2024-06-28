@@ -27,7 +27,7 @@ public class GetAssignmentAttemptByIdUseCase extends UseCase<
                     attempt.getAnswers().stream()
                             .filter(qa ->
                                     qa.getQuestion().getId().equals(question.getId())
-                                            && qa.getCreatorId().equals(attempt.getStudentId()))
+                                            && qa.getCreatorId().equals(attempt.getStudent().getId()))
                             .findFirst().orElse(null)
             );
         }

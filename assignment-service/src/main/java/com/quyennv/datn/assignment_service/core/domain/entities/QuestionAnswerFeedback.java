@@ -16,6 +16,7 @@ public class QuestionAnswerFeedback {
     private Identity id;
 
     private Identity creatorId;
+    private User creator;
     private String message;
     private QuestionAnswerFeedbackType type;
     private QuestionAnswer answer;

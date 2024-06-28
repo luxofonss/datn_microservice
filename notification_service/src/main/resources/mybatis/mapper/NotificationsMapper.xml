@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.quyennv.datn.notification_service.mapper.NotificationMapper">
+    <resultMap id="NotificationResultMap" type="Notification">
+        <id column="id" property="id" javaType="java.util.UUID" jdbcType="OTHER" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+        <result column="student_id" property="studentId" jdbcType="OTHER" />
+        <result column="teacher_id" property="teacherId" jdbcType="OTHER" />
+        <result column="destination_id" property="destinationId" jdbcType="OTHER" />
+        <result column="course_id" property="courseId" jdbcType="OTHER" />
+        <result column="lesson_id" property="lessonId" jdbcType="OTHER" />
+        <result column="conversation_id" property="conversationId" jdbcType="OTHER" />
+        <result column="assignment_attempt_id" property="assignmentAttemptId" jdbcType="OTHER" />
+        <result column="placement_type" property="placementType" jdbcType="VARCHAR" />
+        <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+        <result column="message" property="message" jdbcType="VARCHAR" />
+        <result column="is_seen" property="isSeen" jdbcType="BOOLEAN" />
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+        <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, type, student_id, teacher_id, destination_id, course_id, lesson_id, conversation_id,
+        assignment_attempt_id, placement_type, student_name, message, is_seen, created_at, updated_at, deleted_at
+    </sql>
+
+    <select id="findAll" resultMap="NotificationResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM notifications
+    </select>
+
+    <select id="findById" resultMap="NotificationResultMap" parameterType="java.util.UUID">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM notifications
+        WHERE id = #{id}
+    </select>
+
+    <select id="getNotificationsByUserId" resultMap="NotificationResultMap" parameterType="java.util.UUID">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM notifications
+        WHERE destination_id = #{userId}
+    </select>
+
+    <insert id="insert" parameterType="Notification">
+        INSERT INTO notifications (
+            id, type, student_id, teacher_id, destination_id, course_id, lesson_id, conversation_id,
+            assignment_attempt_id, placement_type, student_name, message, is_seen, created_at, updated_at, deleted_at
+        ) VALUES (
+                     #{id}, #{type}, #{studentId}, #{teacherId}, #{destinationId}, #{courseId}, #{lessonId}, #{conversationId},
+                     #{assignmentAttemptId}, #{placementType}, #{studentName}, #{message}, #{isSeen}, #{createdAt}, #{updatedAt}, #{deletedAt}
+                 )
+    </insert>
+
+    <update id="update" parameterType="Notification">
+        UPDATE notifications
+        SET type=#{type},
+            student_id=#{studentId},
+            teacher_id=#{teacherId},
+            destination_id=#{destinationId},
+            course_id=#{courseId},
+            lesson_id=#{lessonId},
+            conversation_id=#{conversationId},
+            assignment_attempt_id=#{assignmentAttemptId},
+            placement_type=#{placementType},
+            student_name=#{studentName},
+            message=#{message},
+            is_seen=#{isSeen},
+            created_at=#{createdAt},
+            updated_at=#{updatedAt},
+            deleted_at=#{deletedAt}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.util.UUID">
+        DELETE FROM notifications
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE FROM notifications
+    </delete>
+</mapper>

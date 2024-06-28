@@ -10,10 +10,12 @@ import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerRepos
 import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
+@Slf4j
 public class UpdateAssignmentScoreUseCase extends UseCase<UpdateAssignmentScoreUseCase.InputValues,
         UpdateAssignmentScoreUseCase.OutputValues> {
     private final AssignmentAttemptRepository assignmentAttemptRepository;
@@ -75,6 +77,8 @@ public class UpdateAssignmentScoreUseCase extends UseCase<UpdateAssignmentScoreU
             }
         });
         assignmentAttempt.setTotalMark(score.get());
+
+        log.info("score:: {}", score);
 
         return new OutputValues(assignmentAttemptRepository.persist(assignmentAttempt));
     }

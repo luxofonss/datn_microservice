@@ -1,12 +1,12 @@
 package com.quyennv.datn.assignment_service.presenter.config;
 
-import com.quyennv.datn.assignment_service.adapter.event_publisher.kafka.KafkaEventPublisher;
 import com.quyennv.datn.assignment_service.core.repositories.*;
 import com.quyennv.datn.assignment_service.core.usecases.EventPublisher;
 import com.quyennv.datn.assignment_service.core.usecases.answer_feedback.*;
 import com.quyennv.datn.assignment_service.core.usecases.assignment.*;
 import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.AttemptAssignmentUseCase;
 import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.GetAssignmentAttemptByIdUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.GetAttemptsByAssignmentId;
 import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.SubmitQuestionAnswerUseCase;
 import com.quyennv.datn.assignment_service.core.usecases.question.AddQuestionsToAssignmentUseCase;
 import org.springframework.context.annotation.Bean;
@@ -70,13 +70,14 @@ public class Module {
         return new GetAssignmentAttemptByIdUseCase(assignmentAttemptRepository);
     }
     @Bean
-    TeacherScoreAnswerUseCase teacherScoreAnswerUseCase(QuestionAnswerRepository repo, UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase) {
-        return new TeacherScoreAnswerUseCase(repo, updateAssignmentScoreUseCase);
+    TeacherScoreAnswerUseCase teacherScoreAnswerUseCase(QuestionAnswerRepository repo, UpdateAssignmentScoreUseCase updateAssignmentScoreUseCase, EventPublisher eventPublisher) {
+        return new TeacherScoreAnswerUseCase(repo, updateAssignmentScoreUseCase, eventPublisher);
     }
     @Bean
     TeacherAddQuestionFeedBackUseCase teacherAddQuestionFeedBackUseCase(QuestionAnswerFeedbackRepository questionAnswerFeedbackRepository,
-                                                                        QuestionAnswerRepository questionAnswerRepository) {
-        return new TeacherAddQuestionFeedBackUseCase(questionAnswerFeedbackRepository, questionAnswerRepository);
+                                                                        QuestionAnswerRepository questionAnswerRepository,
+                                                                        EventPublisher eventPublisher) {
+        return new TeacherAddQuestionFeedBackUseCase(questionAnswerFeedbackRepository, questionAnswerRepository, eventPublisher);
     }
 
     @Bean
@@ -96,5 +97,10 @@ public class Module {
     @Bean
     GetAssignmentsByCourseUseCase getAssignmentsByCourseUseCase(AssignmentRepository assignmentRepository) {
         return new GetAssignmentsByCourseUseCase(assignmentRepository);
+    }
+
+    @Bean
+    GetAttemptsByAssignmentId getAttemptsByAssignmentId(AssignmentAttemptRepository assignmentAttemptRepository) {
+        return new GetAttemptsByAssignmentId(assignmentAttemptRepository);
     }
 }

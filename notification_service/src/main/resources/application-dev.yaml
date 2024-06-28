@@ -1,0 +1,36 @@
+server:
+  port: 8099
+  servlet:
+    context-path: /notifications
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5555/notifications
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: -1
+      retries: 1
+      properties:
+        enable:
+          idempotence: true
+          max.in.flight.requests.per.connection: 5
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      auto-offset-reset: earliest
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml

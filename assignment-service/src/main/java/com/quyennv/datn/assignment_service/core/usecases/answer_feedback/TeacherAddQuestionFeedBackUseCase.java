@@ -6,19 +6,26 @@ import com.quyennv.datn.assignment_service.core.domain.entities.QuestionAnswerFe
 import com.quyennv.datn.assignment_service.core.domain.enums.QuestionAnswerFeedbackType;
 import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerFeedbackRepository;
 import com.quyennv.datn.assignment_service.core.repositories.QuestionAnswerRepository;
+import com.quyennv.datn.assignment_service.core.usecases.EventPublisher;
 import com.quyennv.datn.assignment_service.core.usecases.UseCase;
 import lombok.Builder;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class TeacherAddQuestionFeedBackUseCase extends UseCase<TeacherAddQuestionFeedBackUseCase.InputValues,
         TeacherAddQuestionFeedBackUseCase.OutputValues> {
     private final QuestionAnswerFeedbackRepository questionAnswerFeedbackRepository;
+
     private final QuestionAnswerRepository questionAnswerRepository;
 
+    private final EventPublisher eventPublisher;
+
     public TeacherAddQuestionFeedBackUseCase(QuestionAnswerFeedbackRepository questionAnswerFeedbackRepository,
-                                             QuestionAnswerRepository questionAnswerRepository) {
+                                             QuestionAnswerRepository questionAnswerRepository, EventPublisher eventPublisher) {
         this.questionAnswerFeedbackRepository = questionAnswerFeedbackRepository;
         this.questionAnswerRepository = questionAnswerRepository;
+        this.eventPublisher = eventPublisher;
     }
 
     @Override
@@ -34,6 +41,9 @@ public class TeacherAddQuestionFeedBackUseCase extends UseCase<TeacherAddQuestio
                 .message(input.getMessage())
                 .type(input.getType())
                 .build();
+
+        eventPublisher.publishFeedbackCreatedNotificationEvent(feedback);
+
         return new OutputValues(questionAnswerFeedbackRepository.persist(feedback));
     }
 

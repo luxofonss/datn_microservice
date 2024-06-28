@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        io.kompose.service: api-gateway
+    name: api-gateway
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            io.kompose.service: api-gateway
+    template:
+        metadata:
+            labels:
+                io.kompose.service: api-gateway
+        spec:
+            containers:
+                - env:
+                      - name: APP_PORT
+                        valueFrom:
+                            configMapKeyRef:
+                                key: APP_PORT
+                                name: env
+                      - name: ASSIGNMENT_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: ASSIGNMENT_SERVICE_URI
+                                name: env
+                      - name: COMMUNICATION_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: COMMUNICATION_SERVICE_URI
+                                name: env
+                      - name: COURSE_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: COURSE_SERVICE_URI
+                                name: env
+                      - name: FILE_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: FILE_SERVICE_URI
+                                name: env
+                      - name: NOTIFICATION_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: NOTIFICATION_SERVICE_URI
+                                name: env
+                      - name: USER_SERVICE_URI
+                        valueFrom:
+                            configMapKeyRef:
+                                key: USER_SERVICE_URI
+                                name: env
+                  image: quyennv0602/dant_api_gateway:0.0.1
+                  name: api-gateway
+                  ports:
+                      - containerPort: 8888
+                        protocol: TCP
+                  resources:
+                      requests:
+                          memory: "128Mi"
+                          cpu: "256m"
+                      limits:
+                          memory: "256Mi"
+                          cpu: "512m"
+
+            restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: api-gateway
+spec:
+    ports:
+        - name: "8888"
+          port: 8888
+          targetPort: 8888
+    selector:
+        io.kompose.service: api-gateway

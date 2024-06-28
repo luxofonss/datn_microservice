@@ -6,6 +6,7 @@ import com.quyennv.datn.assignment_service.core.usecases.answer_feedback.*;
 import com.quyennv.datn.assignment_service.core.usecases.assignment.*;
 import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.AttemptAssignmentUseCase;
 import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.GetAssignmentAttemptByIdUseCase;
+import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.GetAttemptsByAssignmentId;
 import com.quyennv.datn.assignment_service.core.usecases.assignment_attempt.SubmitQuestionAnswerUseCase;
 import com.quyennv.datn.assignment_service.core.usecases.question.AddQuestionsToAssignmentUseCase;
 import com.quyennv.datn.assignment_service.presenter.dto.ApiResponse;
@@ -37,6 +38,8 @@ public class AssignmentController implements AssignmentResource{
     private final TeacherFixLongAnswerUseCase teacherFixLongAnswerUseCase;
     private final GetAssignmentsByCourseUseCase getAssignmentsByCourseUseCase;
 
+    private final GetAttemptsByAssignmentId getAttemptsByAssignmentId;
+
     public AssignmentController(UseCaseExecutor useCaseExecutor,
                                 CreateAssignmentUseCase createAssignmentUseCase,
                                 UpdateAssignmentDetailUseCase updateAssignmentDetailUseCase,
@@ -52,7 +55,8 @@ public class AssignmentController implements AssignmentResource{
                                 UpdateQuestionAnswerFeedbackDataUseCase updateQuestionAnswerFeedbackUseCase,
                                 DeleteQuestionAnswerFeedbackUseCase deleteQuestionAnswerFeedbackUseCase,
                                 TeacherFixLongAnswerUseCase teacherFixLongAnswerUseCase,
-                                GetAssignmentsByCourseUseCase getAssignmentsByCourseUseCase) {
+                                GetAssignmentsByCourseUseCase getAssignmentsByCourseUseCase,
+                                GetAttemptsByAssignmentId getAttemptsByAssignmentId) {
         this.useCaseExecutor = useCaseExecutor;
         this.createAssignmentUseCase = createAssignmentUseCase;
         this.updateAssignmentDetailUseCase = updateAssignmentDetailUseCase;
@@ -69,6 +73,7 @@ public class AssignmentController implements AssignmentResource{
         this.deleteQuestionAnswerFeedbackUseCase = deleteQuestionAnswerFeedbackUseCase;
         this.teacherFixLongAnswerUseCase = teacherFixLongAnswerUseCase;
         this.getAssignmentsByCourseUseCase = getAssignmentsByCourseUseCase;
+        this.getAttemptsByAssignmentId = getAttemptsByAssignmentId;
     }
 
     @Override
@@ -203,6 +208,15 @@ public class AssignmentController implements AssignmentResource{
                 new GetAssignmentAttemptByIdUseCase.InputValues(Identity.fromString(attemptId)),
                 outputValues -> new ApiResponse(true, "ok", outputValues.getAttempt())
 
+        );
+    }
+
+    @Override
+    public CompletableFuture<ApiResponse> getAttemptsByAssignmentId(String assignmentId, UserPrincipal requester, HttpServletRequest httpServletRequest) {
+        return useCaseExecutor.execute(
+                getAttemptsByAssignmentId,
+                new GetAttemptsByAssignmentId.InputValues(Identity.fromString(assignmentId), Identity.from(requester.getId())),
+                outputValues -> new ApiResponse(true, "ok", outputValues.getAttempt())
         );
     }
 

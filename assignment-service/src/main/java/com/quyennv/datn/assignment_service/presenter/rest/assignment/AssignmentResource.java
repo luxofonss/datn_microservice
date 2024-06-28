@@ -80,6 +80,14 @@ public interface AssignmentResource {
             @CurrentUser UserPrincipal requester,
             HttpServletRequest httpServletRequest
     );
+
+    @GetMapping("/attempts")
+    CompletableFuture<ApiResponse> getAttemptsByAssignmentId(
+            @RequestParam String assignmentId,
+            @CurrentUser UserPrincipal requester,
+            HttpServletRequest httpServletRequest
+    );
+
     @PostMapping("/attempts/{attemptId}/submit")
     CompletableFuture<ApiResponse> submitAssignment(
             @PathVariable String attemptId,
